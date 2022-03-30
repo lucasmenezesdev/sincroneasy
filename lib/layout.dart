@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:sincroneasy/helpers/styles.dart';
-import 'package:sincroneasy/views/agenda_page.dart';
-import 'package:sincroneasy/views/chat_page.dart';
-import 'package:sincroneasy/views/home_page.dart';
-import 'package:sincroneasy/views/perfil_page.dart';
+import 'package:sincroneasy/pages/chat_page.dart';
+import 'package:sincroneasy/pages/home_page.dart';
+import 'package:sincroneasy/pages/perfil_page.dart';
+import 'package:sincroneasy/widgets/Layout/find_dialog.dart';
+import 'pages/agenda_page.dart';
 
 class Layout extends StatefulWidget {
   const Layout({Key? key}) : super(key: key);
@@ -40,6 +42,19 @@ class _LayoutState extends State<Layout> {
           PerfilPage(),
         ],
         onPageChanged: setPaginaAtual,
+      ),
+      extendBody: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          showBarModalBottomSheet(
+              context: context, builder: (context) => Container());
+        },
+        child: SizedBox(
+          child: Image.asset('assets/icons/favicon.png'),
+          height: 40,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginaAtual,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sincroneasy/helpers/firebase_options.dart';
-import 'package:sincroneasy/views/home_page.dart';
-import 'package:sincroneasy/views/layout.dart';
-import 'package:sincroneasy/views/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sincroneasy/layout.dart';
 
 void main() async {
   // final config = FirebaseConfig();

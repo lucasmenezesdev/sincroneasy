@@ -14,7 +14,10 @@ class _AgendaPageState extends State<AgendaPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Text('2'),
+            Text(
+              '2',
+              style: TextStyle(color: Colors.black),
+            ),
             SizedBox(width: 40, child: Image.asset('assets/icons/favicon.png')),
             SizedBox(
               width: 10,
