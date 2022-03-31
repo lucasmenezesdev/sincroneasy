@@ -26,8 +26,9 @@ class AuthService extends ChangeNotifier {
 
   register(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      user = userCredential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw AuthException('Senha muito curta! Mínimo de 6 caracteres.');
@@ -39,7 +40,10 @@ class AuthService extends ChangeNotifier {
 
   login(String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+      _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         throw AuthException('E-mail não encontrado!');

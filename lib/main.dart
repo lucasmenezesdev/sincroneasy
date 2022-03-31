@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:sincroneasy/helpers/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'package:sincroneasy/layout.dart';
+import 'package:sincroneasy/pages/login_page.dart';
+import 'package:sincroneasy/services/auth_service.dart';
+import 'package:sincroneasy/widgets/auth_check.dart';
 
-void main() async {
-  // final config = FirebaseConfig();
-  // await Firebase.initializeApp(
-  //   options: FirebaseOptions(
-  //     apiKey: config.apiKey,
-  //     authDomain: config.authDomain,
-  //     projectId: config.projectId,
-  //     messagingSenderId: config.messagingSenderId,
-  //     appId: config.appId,
-  //   ),
-  // );
-
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => AuthService()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Layout(),
+      home: AuthCheck(),
     );
   }
 }

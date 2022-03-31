@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -19,6 +21,23 @@ class _LoginPageState extends State<LoginPage> {
 
   bool visiblePassword = true;
   bool _isHovering = false;
+
+  bool _isLoggingIn = false;
+  bool _isProcessing = false;
+
+  login() async {
+    setState(() => _isLoggingIn = true);
+    try {
+      await context
+          .read<AuthService>()
+          .login(textControllerEmail.text, textControllerPassword.text);
+    } on AuthException catch (e) {
+      setState(() => _isLoggingIn = false);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.message),
+      ));
+    }
+  }
 
   String? _validateEmail(String value) {
     value = value.trim();
@@ -128,6 +147,11 @@ class _LoginPageState extends State<LoginPage> {
                         prefixIcon: Icon(Icons.password),
                       ),
                     )),
+                ElevatedButton(
+                    onPressed: () async {
+                      login();
+                    },
+                    child: Text('Confirmar')),
               ],
             ),
           ),

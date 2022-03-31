@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sincroneasy/services/auth_service.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -10,6 +12,8 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
+    AuthService _auth = Provider.of<AuthService>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -24,6 +28,12 @@ class _ChatPageState extends State<ChatPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [],
+      ),
+      body: ElevatedButton(
+        child: Text(''),
+        onPressed: () {
+          print(_auth.user?.email);
+        },
       ),
     );
   }
