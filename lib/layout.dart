@@ -4,7 +4,6 @@ import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';
-import 'package:sincroneasy/widgets/Layout/find_dialog.dart';
 import 'pages/agenda_page.dart';
 
 class Layout extends StatefulWidget {
@@ -72,8 +71,8 @@ class _LayoutState extends State<Layout> {
         onTap: (pagina) {
           pc.animateToPage(
             pagina,
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.ease,
+            duration: const Duration(milliseconds: 1),
+            curve: Curves.linear,
           );
         },
       ),

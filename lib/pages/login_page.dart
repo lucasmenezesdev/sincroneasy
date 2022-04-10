@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/pages/register_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
+import 'package:sincroneasy/widgets/custom_button_widget.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -24,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoggingIn = false;
   bool _isProcessing = false;
+  bool loading = false;
 
   login() async {
     setState(() => _isLoggingIn = true);
@@ -33,6 +38,20 @@ class _LoginPageState extends State<LoginPage> {
           .login(textControllerEmail.text, textControllerPassword.text);
     } on AuthException catch (e) {
       setState(() => _isLoggingIn = false);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.message),
+      ));
+    }
+  }
+
+  register() async {
+    setState(() => loading = true);
+    try {
+      await context
+          .read<AuthService>()
+          .register(textControllerEmail.text, textControllerPassword.text);
+    } on AuthException catch (e) {
+      setState(() => loading = false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.message),
       ));
@@ -79,8 +98,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
             height: 500,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  'Login',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 25, color: blue, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Container(
                   width: 300,
                   child: TextField(
@@ -147,11 +176,65 @@ class _LoginPageState extends State<LoginPage> {
                         prefixIcon: Icon(Icons.password),
                       ),
                     )),
-                ElevatedButton(
+                SizedBox(
+                  height: 25,
+                ),
+                CustomButton(
                     onPressed: () async {
                       login();
                     },
-                    child: Text('Confirmar')),
+                    text: 'Confirmar'),
+                InkWell(
+                  hoverColor: Colors.transparent,
+                  onTap: () {
+                    setState(() {
+                      _isHovering = true;
+                    });
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => RegisterPage()));
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Text(
+                        "Cadastrar",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: _isHovering ? Colors.black : cream,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                ),
+                // ElevatedButton(
+                //     onPressed: () async {
+                //       print('Teste');
+                //       setState(() {
+                //         _isProcessing = true;
+                //       });
+                //       await context
+                //           .read<AuthService>()
+                //           .signInWithGoogle()
+                //           .then((result) {
+                //         print(result);
+                //         if (result != null) {
+                //           Navigator.of(context).pop();
+                //         }
+                //       }).catchError((error) {
+                //         print('Registration Error: $error');
+                //       });
+                //       setState(() {
+                //         _isProcessing = false;
+                //       });
+                //     },
+                //     child: Text('teste')),
               ],
             ),
           ),

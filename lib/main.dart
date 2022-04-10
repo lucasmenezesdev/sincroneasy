@@ -4,11 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:sincroneasy/layout.dart';
 import 'package:sincroneasy/pages/login_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
-import 'package:sincroneasy/widgets/auth_check.dart';
+import 'package:sincroneasy/widgets/auth_check_widget.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => AuthService()),

@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService extends ChangeNotifier {
+  final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
+    'email',
+  ]);
   FirebaseAuth _auth = FirebaseAuth.instance;
   User? user;
   bool isLoading = true;
@@ -24,7 +29,7 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  register(String email, String password) async {
+  Future register(String email, String password) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -38,7 +43,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  login(String email, String password) async {
+  Future login(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -50,6 +55,14 @@ class AuthService extends ChangeNotifier {
       } else if (e.code == 'wrong-password') {
         throw AuthException('Senha incorreta!');
       }
+    }
+  }
+
+  Future signInWithGoogle() async {
+    try {
+      await googleSignIn.signIn();
+    } catch (e) {
+      print('Erro');
     }
   }
 
