@@ -8,7 +8,7 @@ Color brown = Color(0xFF3a3434);
 Color grey = Color.fromARGB(255, 214, 204, 204);
 
 screenSize(BuildContext context) {
-  double size = MediaQuery.of(context).size.width;
+  Size size = MediaQuery.of(context).size;
   return size;
 }
 

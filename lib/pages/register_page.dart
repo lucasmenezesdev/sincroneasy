@@ -91,161 +91,166 @@ class _RegisterPageState extends State<RegisterPage> {
         elevation: 0,
         foregroundColor: Colors.black,
       ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'Registrar',
-              style: GoogleFonts.montserrat(
-                  fontSize: 25, color: blue, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              width: 300,
-              child: TextField(
-                focusNode: textFocusNodeName,
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                controller: textControllerName,
-                autofocus: false,
-                onChanged: (value) {
-                  setState(() {
-                    _isEditingEmail = true;
-                  });
-                },
-                onSubmitted: (value) {
-                  textFocusNodeEmail.unfocus();
-                  FocusScope.of(context).requestFocus(textFocusNodeEmail);
-                },
-                decoration: InputDecoration(
-                  errorText: _isEditingEmail
-                      ? _validateEmail(textControllerEmail.text)
-                      : null,
-                  errorStyle: TextStyle(
-                    fontSize: 12,
-                    color: Colors.redAccent,
-                  ),
-                  filled: true,
-                  labelText: 'Nome',
-                  hintText: 'exemplo@dominio.com',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  prefixIcon: Icon(Icons.person),
-                  contentPadding: EdgeInsets.only(right: 30),
-                ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height - 120,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 30,
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
-              width: 300,
-              child: TextField(
-                focusNode: textFocusNodeEmail,
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                controller: textControllerEmail,
-                autofocus: false,
-                onChanged: (value) {
-                  setState(() {
-                    _isEditingEmail = true;
-                  });
-                },
-                onSubmitted: (value) {
-                  textFocusNodeEmail.unfocus();
-                  FocusScope.of(context).requestFocus(textFocusNodeEmail);
-                },
-                decoration: InputDecoration(
-                  errorText: _isEditingEmail
-                      ? _validateEmail(textControllerEmail.text)
-                      : null,
-                  errorStyle: TextStyle(
-                    fontSize: 12,
-                    color: Colors.redAccent,
-                  ),
-                  filled: true,
-                  labelText: 'E-mail',
-                  hintText: 'exemplo@dominio.com',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  prefixIcon: Icon(Icons.email),
-                  contentPadding: EdgeInsets.only(right: 30),
-                ),
+              Text(
+                'Registrar',
+                style: GoogleFonts.montserrat(
+                    fontSize: 25, color: blue, fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
+              SizedBox(
+                height: 50,
+              ),
+              Container(
                 width: 300,
                 child: TextField(
-                  focusNode: textFocusNodePassword,
-                  keyboardType: TextInputType.visiblePassword,
+                  focusNode: textFocusNodeName,
+                  keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
-                  controller: textControllerPassword,
-                  autofocus: true,
-                  onChanged: (value) async {
+                  controller: textControllerName,
+                  autofocus: false,
+                  onChanged: (value) {
                     setState(() {
-                      _isEditingPassword = true;
+                      _isEditingEmail = true;
                     });
                   },
                   onSubmitted: (value) {
-                    textFocusNodePassword.unfocus();
-                    FocusScope.of(context).requestFocus(textFocusNodePassword);
+                    textFocusNodeEmail.unfocus();
+                    FocusScope.of(context).requestFocus(textFocusNodeEmail);
                   },
-                  obscureText: visiblePassword,
-                  style: TextStyle(),
                   decoration: InputDecoration(
+                    errorText: _isEditingEmail
+                        ? _validateEmail(textControllerEmail.text)
+                        : null,
+                    errorStyle: TextStyle(
+                      fontSize: 12,
+                      color: Colors.redAccent,
+                    ),
                     filled: true,
-                    labelText: 'Senha',
+                    labelText: 'Nome',
+                    hintText: 'exemplo@dominio.com',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    prefixIcon: Icon(Icons.password),
+                    prefixIcon: Icon(Icons.person),
+                    contentPadding: EdgeInsets.only(right: 30),
                   ),
-                )),
-            SizedBox(
-              height: 30,
-            ),
-            Container(
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
                 width: 300,
                 child: TextField(
-                  focusNode: textFocusNodePasswordRepeat,
-                  keyboardType: TextInputType.visiblePassword,
+                  focusNode: textFocusNodeEmail,
+                  keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
-                  controller: textControllerPasswordRepeat,
-                  autofocus: true,
-                  onChanged: (value) async {
+                  controller: textControllerEmail,
+                  autofocus: false,
+                  onChanged: (value) {
                     setState(() {
-                      _isEditingPassword = true;
+                      _isEditingEmail = true;
                     });
                   },
                   onSubmitted: (value) {
-                    textFocusNodePassword.unfocus();
-                    FocusScope.of(context).requestFocus(textFocusNodePassword);
+                    textFocusNodeEmail.unfocus();
+                    FocusScope.of(context).requestFocus(textFocusNodeEmail);
                   },
-                  obscureText: visiblePassword,
-                  style: TextStyle(),
                   decoration: InputDecoration(
+                    errorText: _isEditingEmail
+                        ? _validateEmail(textControllerEmail.text)
+                        : null,
+                    errorStyle: TextStyle(
+                      fontSize: 12,
+                      color: Colors.redAccent,
+                    ),
                     filled: true,
-                    labelText: 'Repita a senha',
+                    labelText: 'E-mail',
+                    hintText: 'exemplo@dominio.com',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    prefixIcon: Icon(Icons.password),
+                    prefixIcon: Icon(Icons.email),
+                    contentPadding: EdgeInsets.only(right: 30),
                   ),
-                )),
-            SizedBox(
-              height: 25,
-            ),
-            CustomButton(onPressed: () async {}, text: 'Confirmar'),
-          ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                  width: 300,
+                  child: TextField(
+                    focusNode: textFocusNodePassword,
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next,
+                    controller: textControllerPassword,
+                    autofocus: true,
+                    onChanged: (value) async {
+                      setState(() {
+                        _isEditingPassword = true;
+                      });
+                    },
+                    onSubmitted: (value) {
+                      textFocusNodePassword.unfocus();
+                      FocusScope.of(context)
+                          .requestFocus(textFocusNodePassword);
+                    },
+                    obscureText: visiblePassword,
+                    style: TextStyle(),
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Senha',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      prefixIcon: Icon(Icons.password),
+                    ),
+                  )),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                  width: 300,
+                  child: TextField(
+                    focusNode: textFocusNodePasswordRepeat,
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.next,
+                    controller: textControllerPasswordRepeat,
+                    autofocus: true,
+                    onChanged: (value) async {
+                      setState(() {
+                        _isEditingPassword = true;
+                      });
+                    },
+                    onSubmitted: (value) {
+                      textFocusNodePassword.unfocus();
+                      FocusScope.of(context)
+                          .requestFocus(textFocusNodePassword);
+                    },
+                    obscureText: visiblePassword,
+                    style: TextStyle(),
+                    decoration: InputDecoration(
+                      filled: true,
+                      labelText: 'Repita a senha',
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      prefixIcon: Icon(Icons.password),
+                    ),
+                  )),
+              SizedBox(
+                height: 25,
+              ),
+              CustomButton(onPressed: () async {}, text: 'Confirmar'),
+            ],
+          ),
         ),
       ),
     );

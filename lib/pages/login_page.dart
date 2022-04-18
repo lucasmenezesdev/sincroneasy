@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import 'package:sincroneasy/helpers/styles.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sincroneasy/pages/register_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
+
+import '../helpers/styles.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -31,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   bool loading = false;
 
   login() async {
+    print("Logando");
     setState(() => _isLoggingIn = true);
     try {
       await context
@@ -38,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
           .login(textControllerEmail.text, textControllerPassword.text);
     } on AuthException catch (e) {
       setState(() => _isLoggingIn = false);
+      print(e);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(e.message),
       ));
@@ -179,11 +183,11 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 25,
                 ),
-                CustomButton(
+                ElevatedButton(
                     onPressed: () async {
                       login();
                     },
-                    text: 'Confirmar'),
+                    child: Text('Confirmar')),
                 InkWell(
                   hoverColor: Colors.transparent,
                   onTap: () {

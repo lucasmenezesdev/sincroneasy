@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                         left: 15,
                         right: 15,
                       ),
-                      width: screenSize(context) - 20,
+                      width: screenSize(context).width - 20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                       ),
