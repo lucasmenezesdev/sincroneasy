@@ -4,6 +4,7 @@ import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';
+import 'package:sincroneasy/widgets/modal_bottom_sinc.dart';
 import 'pages/agenda_page.dart';
 
 class Layout extends StatefulWidget {
@@ -47,8 +48,7 @@ class _LayoutState extends State<Layout> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-          showBarModalBottomSheet(
-              context: context, builder: (context) => Container());
+          modal_bottom_sinc(context);
         },
         child: SizedBox(
           child: Image.asset('assets/icons/favicon.png'),

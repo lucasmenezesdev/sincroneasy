@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/widgets/modal_bottom_config.dart';
 
 import '../services/auth_service.dart';
 
@@ -13,10 +14,6 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
-  logOut() async {
-    await context.read<AuthService>().logout();
-  }
-
   bool _isHovering = false;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +39,7 @@ class _PerfilPageState extends State<PerfilPage> {
             },
             hoverColor: Colors.transparent,
             onTap: () {
-              logOut();
+              modal_bottom_config(context);
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -50,19 +47,18 @@ class _PerfilPageState extends State<PerfilPage> {
                 const SizedBox(
                   height: 12,
                 ),
-                Text(
-                  "Sair",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: _isHovering ? Colors.black : orange,
-                  ),
+                Icon(
+                  Icons.settings,
+                  color: Colors.black,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
               ],
             ),
+          ),
+          SizedBox(
+            width: 15,
           ),
         ],
       ),
