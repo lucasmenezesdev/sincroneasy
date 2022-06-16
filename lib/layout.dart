@@ -52,7 +52,7 @@ class _LayoutState extends State<Layout> {
         },
         child: SizedBox(
           child: Image.asset('assets/icons/sincicon.png'),
-          height: 40,
+          height: 60,
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
