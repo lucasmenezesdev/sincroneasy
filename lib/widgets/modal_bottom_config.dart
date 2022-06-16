@@ -13,11 +13,12 @@ modal_bottom_config(BuildContext context) {
             child: Column(
               children: [
                 ListTile(
-                  title: customText('Assinatura', 20, Colors.black),
+                  title: customText(
+                      'Assinatura', 20, Colors.black, FontWeight.bold),
                   onTap: () async {},
                 ),
                 ListTile(
-                  title: customText('Sair', 20, Colors.black),
+                  title: customText('Sair', 20, Colors.black, FontWeight.bold),
                   onTap: () async {
                     await context.read<AuthService>().logout();
                   },
