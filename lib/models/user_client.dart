@@ -8,21 +8,21 @@ class UserClient {
   late String _localization;
   late String _email;
 
-  get getUid => this._uid;
-  get getName => this._name;
-  get getLastName => this._lastName;
-  get getNumber => this._number;
-  get getFavorites => this._favorites;
-  get getFoto => this._foto;
-  get getLocalization => this._localization;
-  get getEmail => this._email;
+  get getUid => _uid;
+  get getName => _name;
+  get getLastName => _lastName;
+  get getNumber => _number;
+  get getFavorites => _favorites;
+  get getFoto => _foto;
+  get getLocalization => _localization;
+  get getEmail => _email;
 
-  set setUid(n) => this._uid = n;
-  set setName(n) => this._name = n;
-  set setLastName(n) => this._lastName = n;
-  set setNumber(n) => this._number = n;
-  set setFavorites(n) => this._favorites = n;
-  set setFoto(n) => this._foto = n;
-  set setLocalization(n) => this._localization = n;
-  set setEmail(n) => this._email = n;
+  set setUid(n) => _uid = n;
+  set setName(n) => _name = n;
+  set setLastName(n) => _lastName = n;
+  set setNumber(n) => _number = n;
+  set setFavorites(n) => _favorites = n;
+  set setFoto(n) => _foto = n;
+  set setLocalization(n) => _localization = n;
+  set setEmail(n) => _email = n;
 }
