@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +17,8 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
-  final UserClient _user = UserClient();
+  String url =
+      "https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b";
   bool _isHovering = false;
   @override
   Widget build(BuildContext context) {
@@ -64,28 +67,53 @@ class _PerfilPageState extends State<PerfilPage> {
           ),
         ],
       ),
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          clipBehavior: Clip.none,
-          alignment: Alignment.topCenter,
-          children: [
-            Positioned(
-              bottom: -22,
-              left: 0,
-              right: 0,
-              child: SizedBox(
-                  width: 45,
-                  height: 45,
-                  child: CircleAvatar(
-                    child: Image(image: NetworkImage(_user.getFoto)),
-                    radius: 45,
-                  )),
+      body: Column(
+        children: [
+          Flexible(
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 150,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+                    child: Container(color: Colors.black.withOpacity(0)),
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      image: DecorationImage(
+                          image: NetworkImage(url), fit: BoxFit.cover)),
+                ),
+                Positioned(
+                  bottom: -50,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            boxShadow: [
+                              const BoxShadow(
+                                  color: Colors.white, spreadRadius: 4),
+                            ],
+                            image: DecorationImage(
+                                fit: BoxFit.cover, image: NetworkImage(url)),
+                          ))),
+                ),
+              ],
             ),
-            customText(_user.getName, 22, Colors.black, FontWeight.bold)
-          ],
-        ),
+            flex: 5,
+          ),
+          const Spacer(),
+          Flexible(
+            child: customText('nome', 22, Colors.black, FontWeight.w500),
+            flex: 5,
+          ),
+          const Spacer(),
+        ],
       ),
     );
   }
