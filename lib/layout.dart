@@ -51,7 +51,7 @@ class _LayoutState extends State<Layout> {
           modal_bottom_sinc(context);
         },
         child: SizedBox(
-          child: Image.asset('assets/icons/favicon.png'),
+          child: Image.asset('assets/icons/sincicon.png'),
           height: 40,
         ),
       ),

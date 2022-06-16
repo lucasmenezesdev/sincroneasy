@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/widgets/modal_bottom_config.dart';
 
+import '../models/user_client.dart';
 import '../services/auth_service.dart';
 
 class PerfilPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
+  final UserClient _user = UserClient();
   bool _isHovering = false;
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,29 @@ class _PerfilPageState extends State<PerfilPage> {
             width: 15,
           ),
         ],
+      ),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.topCenter,
+          children: [
+            Positioned(
+              bottom: -22,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                  width: 45,
+                  height: 45,
+                  child: CircleAvatar(
+                    child: Image(image: NetworkImage(_user.getFoto)),
+                    radius: 45,
+                  )),
+            ),
+            customText(_user.getName, 22, Colors.black, FontWeight.bold)
+          ],
+        ),
       ),
     );
   }

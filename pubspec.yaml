@@ -68,6 +68,7 @@ flutter:
     - assets/icons/favicon.png
     - assets/icons/slogo.png
     - assets/images/capa1.png
+    - assets/icons/sincicon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
