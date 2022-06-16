@@ -35,7 +35,7 @@ class _LayoutState extends State<Layout> {
     return Scaffold(
       body: PageView(
         controller: pc,
-        children: [
+        children: const [
           HomePage(),
           AgendaPage(),
           ChatPage(),
@@ -58,7 +58,7 @@ class _LayoutState extends State<Layout> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: paginaAtual,
         type: BottomNavigationBarType.fixed,
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: 'Início'),
           BottomNavigationBarItem(
@@ -66,12 +66,12 @@ class _LayoutState extends State<Layout> {
           BottomNavigationBarItem(
               icon: Icon(Icons.question_answer_outlined), label: 'Chat'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.perm_identity), label: 'Chat'),
+              icon: Icon(Icons.perm_identity), label: 'Perfil'),
         ],
         onTap: (pagina) {
           pc.animateToPage(
             pagina,
-            duration: const Duration(milliseconds: 1),
+            duration: const Duration(milliseconds: 200),
             curve: Curves.linear,
           );
         },
