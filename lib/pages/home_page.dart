@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/widgets/icon_favorites.dart';
+import 'package:sincroneasy/widgets/icon_most_used.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 150,
@@ -52,10 +53,68 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
+                    margin: EdgeInsets.only(left: 15),
                     child: customText(
-                        'Favoritos', 24, Colors.black, FontWeight.bold)),
-                IconFavorites(),
+                        'Favoritos', 20, Colors.black, FontWeight.bold)),
+                SizedBox(
+                  height: 90,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      margin: EdgeInsets.only(left: 15),
+                      width: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: IconFavorites(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: customText(
+                        'Mais utilizados', 20, Colors.black, FontWeight.bold)),
+                SizedBox(
+                  height: 115,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      margin: EdgeInsets.only(left: 15),
+                      child: IconMostUsed(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                    margin: EdgeInsets.only(left: 15),
+                    child: customText(
+                        'Recentes', 20, Colors.black, FontWeight.bold)),
+                SizedBox(
+                  height: 90,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Container(
+                      margin: EdgeInsets.only(left: 15),
+                      width: 90,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: IconFavorites(),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
