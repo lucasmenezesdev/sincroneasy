@@ -5,7 +5,12 @@ import 'package:sincroneasy/helpers/styles.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final Function onPressed;
-  const CustomButton({Key? key, required this.text, required this.onPressed})
+  final Color color;
+  const CustomButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      required this.color})
       : super(key: key);
 
   @override
@@ -18,7 +23,7 @@ class CustomButton extends StatelessWidget {
       ),
       onPressed: () => onPressed,
       style: ElevatedButton.styleFrom(
-          fixedSize: const Size(300, 45), primary: blue),
+          fixedSize: const Size(300, 45), primary: color),
     );
   }
 }

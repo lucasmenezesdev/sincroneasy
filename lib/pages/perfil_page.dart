@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/widgets/custom_button_widget.dart';
 import 'package:sincroneasy/widgets/modal_bottom_config.dart';
 
 import '../models/user_client.dart';
@@ -20,6 +21,8 @@ class _PerfilPageState extends State<PerfilPage> {
   String url =
       "https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b";
   bool _isHovering = false;
+  navigate() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,10 +112,48 @@ class _PerfilPageState extends State<PerfilPage> {
           ),
           const Spacer(),
           Flexible(
-            child: customText('nome', 22, Colors.black, FontWeight.w500),
-            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: customText('nome', 22, Colors.black, FontWeight.w500),
+            ),
+            flex: 1,
           ),
           const Spacer(),
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: orange,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        'Faça upgrade de sua conta de cliente e seja um prestador de serviços Sincroneasy, garanta já seu plano com 3 meses gratuitos!',
+                        style: TextStyle(
+                            color: blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    CustomButton(
+                      text: 'VER PLANOS',
+                      onPressed: () {},
+                      color: blue,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            flex: 7,
+          )
         ],
       ),
     );

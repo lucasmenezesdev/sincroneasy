@@ -248,7 +248,11 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 25,
               ),
-              CustomButton(onPressed: () async {}, text: 'Confirmar'),
+              CustomButton(
+                onPressed: () async {},
+                text: 'Confirmar',
+                color: blue,
+              ),
             ],
           ),
         ),
