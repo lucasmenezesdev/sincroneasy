@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/widgets/icon_favorites.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,9 +28,11 @@ class _HomePageState extends State<HomePage> {
         actions: [],
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 150,
@@ -48,7 +51,11 @@ class _HomePageState extends State<HomePage> {
                       child: Image.asset('assets/images/capa1.png'),
                     ),
                   ),
-                )
+                ),
+                Container(
+                    child: customText(
+                        'Favoritos', 24, Colors.black, FontWeight.bold)),
+                IconFavorites(),
               ],
             ),
           ),

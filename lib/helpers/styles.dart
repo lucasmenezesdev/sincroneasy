@@ -12,9 +12,10 @@ screenSize(BuildContext context) {
   return size;
 }
 
-Text customText(String text, double size, Color? color) {
+Text customText(String text, double size, Color? color, FontWeight weight) {
   return Text(
     text,
-    style: GoogleFonts.montserrat(fontSize: size, color: color ?? Colors.black),
+    style: GoogleFonts.montserrat(
+        fontSize: size, color: color ?? Colors.black, fontWeight: weight),
   );
 }
