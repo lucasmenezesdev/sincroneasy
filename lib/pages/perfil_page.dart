@@ -79,9 +79,11 @@ class _PerfilPageState extends State<PerfilPage> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 150,
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
-                    child: Container(color: Colors.black.withOpacity(0)),
+                  child: ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+                      child: Container(color: Colors.black.withOpacity(0)),
+                    ),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.black,
