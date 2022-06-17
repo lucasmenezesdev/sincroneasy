@@ -1,35 +1,47 @@
-import 'dart:ffi';
+import 'package:sincroneasy/models/service.dart';
+import 'package:sincroneasy/models/user.dart';
 
-import 'package:flutter/cupertino.dart';
+class UserClient implements User {
+  @override
+  String uid;
+  @override
+  String name;
+  @override
+  String lastName;
+  @override
+  String number;
+  @override
+  String email;
+  late List favorites;
+  late String foto;
+  late String localization;
+  late bool plan;
+  late List<Service> services;
 
-class UserClient {
-  late String _uid;
-  late String _name;
-  late String _lastName;
-  late String _number;
-  late List _favorites;
-  late String _foto;
-  late String _localization;
-  late String _email;
-  late bool _plan;
+  UserClient(
+      {required this.uid,
+      required this.name,
+      required this.lastName,
+      required this.number,
+      required this.email});
 
-  get getUid => _uid;
-  get getName => _name;
-  get getLastName => _lastName;
-  get getNumber => _number;
-  get getFavorites => _favorites;
-  get getFoto => _foto;
-  get getLocalization => _localization;
-  get getEmail => _email;
-  get getPlan => _plan;
+  get getUid => uid;
+  get getName => name;
+  get getLastName => lastName;
+  get getNumber => number;
+  get getFavorites => favorites;
+  get getFoto => foto;
+  get getLocalization => localization;
+  get getEmail => email;
+  get getPlan => plan;
 
-  set setUid(n) => _uid = n;
-  set setName(n) => _name = n;
-  set setLastName(n) => _lastName = n;
-  set setNumber(n) => _number = n;
-  set setFavorites(n) => _favorites = n;
-  set setFoto(n) => _foto = n;
-  set setLocalization(n) => _localization = n;
-  set setEmail(n) => _email = n;
-  set setPlan(n) => _plan = n;
+  set setUid(n) => uid = n;
+  set setName(n) => name = n;
+  set setLastName(n) => lastName = n;
+  set setNumber(n) => number = n;
+  set setFavorites(n) => favorites = n;
+  set setFoto(n) => foto = n;
+  set setLocalization(n) => localization = n;
+  set setEmail(n) => email = n;
+  set setPlan(n) => plan = n;
 }
