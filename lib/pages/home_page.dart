@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final dropvalue = ValueNotifier('');
+  final dropOptions = ['Mais Avaliados', 'Mais Novos', 'Próximos'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,19 +34,39 @@ class _HomePageState extends State<HomePage> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.all(15),
+            margin: const EdgeInsets.only(left: 15, right: 15),
             child: TextField(
               cursorColor: orange,
               //controller: controller,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 hintText: 'pesquisar',
+                floatingLabelAlignment: FloatingLabelAlignment.center,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(5),
                   borderSide:
                       BorderSide(color: orange, style: BorderStyle.solid),
                 ),
               ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            alignment: Alignment.topRight,
+            margin: EdgeInsets.only(left: 15, right: 15),
+            child: ValueListenableBuilder(
+              valueListenable: dropvalue,
+              builder: (BuildContext context, String value, _) {
+                return DropdownButton<String>(
+                    icon: const Icon(Icons.sort),
+                    hint: const Text('filtrar'),
+                    value: (value.isEmpty) ? null : value,
+                    items: dropOptions
+                        .map((option) => DropdownMenuItem(
+                            value: option, child: Text(option)))
+                        .toList(),
+                    onChanged: (chosen) => dropvalue.value = chosen.toString());
+              },
             ),
           ),
           SizedBox(
