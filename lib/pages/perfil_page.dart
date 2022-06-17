@@ -115,10 +115,10 @@ class _PerfilPageState extends State<PerfilPage> {
           const Spacer(),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: customText('nome', 22, Colors.black, FontWeight.w500),
+              padding: const EdgeInsets.all(15.0),
+              child: customText('nome', 22, Colors.black87, FontWeight.w500),
             ),
-            flex: 1,
+            flex: 2,
           ),
           const Spacer(),
           Flexible(
