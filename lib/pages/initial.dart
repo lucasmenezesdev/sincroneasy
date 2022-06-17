@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/pages/login_page.dart';
+import 'package:sincroneasy/pages/register_page.dart';
 
 class Initial extends StatelessWidget {
   const Initial({Key? key}) : super(key: key);
@@ -29,7 +31,10 @@ class Initial extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(110, 45),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => LoginPage()));
+                },
                 child:
                     customText('Entrar', 18, Colors.white, FontWeight.normal),
               ),
@@ -48,8 +53,12 @@ class Initial extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(110, 45),
                 ),
-                onPressed: () {},
-                child: customText('Gmail', 18, Colors.white, FontWeight.normal),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => RegisterPage()));
+                },
+                child: customText(
+                    'Registrar', 18, Colors.white, FontWeight.normal),
               ),
             ],
           ),
@@ -61,8 +70,18 @@ class Initial extends StatelessWidget {
                 fixedSize: const Size(230, 45),
               ),
               onPressed: () {},
-              child:
-                  customText('Register', 18, Colors.white, FontWeight.normal))
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: Image.asset('assets/icons/google.png'),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  customText('Gmail', 18, Colors.white, FontWeight.normal),
+                ],
+              ))
         ],
       ),
     );

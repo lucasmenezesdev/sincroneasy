@@ -67,6 +67,7 @@ flutter:
   assets:
     - assets/icons/favicon.png
     - assets/icons/slogo.png
+    - assets/icons/google.png
     - assets/images/capa1.png
     - assets/icons/sincicon.png
 
