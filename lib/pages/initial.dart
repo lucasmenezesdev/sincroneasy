@@ -9,26 +9,62 @@ class Initial extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(''),
-        Row(
-          children: [
-            ElevatedButton(
+    return Container(
+      color: cream,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 45,
+            child: Image.asset('assets/icons/slogo.png'),
+          ),
+          SizedBox(
+            height: 60,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(110, 45),
+                ),
+                onPressed: () {},
+                child:
+                    customText('Entrar', 18, Colors.white, FontWeight.normal),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Container(
+                color: Colors.grey,
+                width: 1,
+                height: 45,
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(110, 45),
+                ),
+                onPressed: () {},
+                child: customText('Gmail', 18, Colors.white, FontWeight.normal),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                fixedSize: const Size(230, 45),
+              ),
               onPressed: () {},
-              child: customText('Entrar', 18, Colors.white, FontWeight.normal),
-            ),
-            Container(
-              color: Colors.grey,
-              width: 2,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: customText('Entrar', 18, Colors.white, FontWeight.normal),
-            ),
-          ],
-        )
-      ],
+              child:
+                  customText('Register', 18, Colors.white, FontWeight.normal))
+        ],
+      ),
     );
   }
 }
