@@ -35,6 +35,20 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.all(15),
+                  child: TextField(
+                      cursorColor: orange,
+                      //controller: controller,
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.search),
+                          hintText: 'pesquisar',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide(
+                                  color: orange, style: BorderStyle.solid)))),
+                ),
                 SizedBox(
                   height: 150,
                   child: ListView.builder(

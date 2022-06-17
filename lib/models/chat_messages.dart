@@ -7,6 +7,7 @@ class ChatMessages {
   late String _toName;
   late String _textMessage;
   late bool _viewed;
+  late double _timestamp;
 
   get getFromUID => _fromUID;
   get getToUID => _toUID;
@@ -16,6 +17,7 @@ class ChatMessages {
   get getToName => _toName;
   get getTextMessage => _textMessage;
   get getViewed => _viewed;
+  get getTimestamp => _timestamp;
 
   set setFromUID(n) => _fromUID = n;
   set setToUID(n) => _toUID = n;
@@ -25,4 +27,5 @@ class ChatMessages {
   set setToName(n) => _toName = n;
   set setTextMessage(n) => _textMessage = n;
   set setViewed(n) => _viewed = n;
+  set setTimestamp(n) => _timestamp = n;
 }
