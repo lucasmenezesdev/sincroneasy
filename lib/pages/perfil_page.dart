@@ -30,7 +30,7 @@ class _PerfilPageState extends State<PerfilPage> {
         title: Row(
           children: [
             SizedBox(width: 40, child: Image.asset('assets/icons/favicon.png')),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SizedBox(width: 120, child: Image.asset('assets/icons/slogo.png')),
@@ -51,15 +51,15 @@ class _PerfilPageState extends State<PerfilPage> {
             },
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   height: 12,
                 ),
                 Icon(
                   Icons.settings,
                   color: Colors.black,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 5,
                 ),
               ],
