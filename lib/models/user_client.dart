@@ -1,29 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:sincroneasy/models/service.dart';
 import 'package:sincroneasy/models/user.dart';
 
-class UserClient implements User {
+class UserClient extends ChangeNotifier implements User {
   @override
-  String uid;
+  late String uid;
   @override
-  String name;
+  late String name;
   @override
-  String lastName;
+  late String lastName;
   @override
-  String number;
+  late String number;
   @override
-  String email;
+  late String email;
   late List favorites;
   late String foto;
   late String localization;
   late bool plan;
   late List<Service> services;
-
-  UserClient(
-      {required this.uid,
-      required this.name,
-      required this.lastName,
-      required this.number,
-      required this.email});
 
   get getUid => uid;
   get getName => name;

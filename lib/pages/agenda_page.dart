@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sincroneasy/models/user_client.dart';
 
 class AgendaPage extends StatefulWidget {
   const AgendaPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class AgendaPage extends StatefulWidget {
 class _AgendaPageState extends State<AgendaPage> {
   @override
   Widget build(BuildContext context) {
+    UserClient userClient = Provider.of<UserClient>(context);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -25,7 +28,13 @@ class _AgendaPageState extends State<AgendaPage> {
         elevation: 0,
         actions: [],
       ),
-      body: ListTile(),
+      body: ListView.separated(
+        itemBuilder: (BuildContext context, int moeda) {
+          return ListTile();
+        },
+        separatorBuilder: (_, __) => const Divider(),
+        itemCount: 10,
+      ),
     );
   }
 }
