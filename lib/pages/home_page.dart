@@ -28,108 +28,102 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         actions: [],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  margin: const EdgeInsets.all(15),
-                  child: TextField(
-                      cursorColor: orange,
-                      //controller: controller,
-                      decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search),
-                          hintText: 'pesquisar',
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              borderSide: BorderSide(
-                                  color: orange, style: BorderStyle.solid)))),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.all(15),
+            child: TextField(
+              cursorColor: orange,
+              //controller: controller,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
+                hintText: 'pesquisar',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide:
+                      BorderSide(color: orange, style: BorderStyle.solid),
                 ),
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.only(
-                        left: 15,
-                        right: 15,
-                      ),
-                      width: screenSize(context).width - 20,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Image.asset('assets/images/capa1.png'),
-                    ),
-                  ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.only(
+                  left: 15,
+                  right: 15,
                 ),
-                SizedBox(
-                  height: 20,
+                width: screenSize(context).width - 20,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                Container(
-                    margin: EdgeInsets.only(left: 15),
-                    child: customText(
-                        'Favoritos', 20, Colors.black, FontWeight.bold)),
-                SizedBox(
-                  height: 90,
-                  child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.only(left: 15),
-                      width: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: IconFavorites(),
-                    ),
-                  ),
+                child: Image.asset('assets/images/capa1.png'),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              margin: EdgeInsets.only(left: 15),
+              child:
+                  customText('Favoritos', 20, Colors.black, FontWeight.bold)),
+          SizedBox(
+            height: 90,
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.only(left: 15),
+                width: 90,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                SizedBox(
-                  height: 20,
+                child: IconFavorites(),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              margin: EdgeInsets.only(left: 15),
+              child: customText(
+                  'Mais utilizados', 20, Colors.black, FontWeight.bold)),
+          SizedBox(
+            height: 115,
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.only(left: 15),
+                child: IconMostUsed(),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Container(
+              margin: EdgeInsets.only(left: 15),
+              child: customText('Recentes', 20, Colors.black, FontWeight.bold)),
+          SizedBox(
+            height: 90,
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.only(left: 15),
+                width: 90,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                Container(
-                    margin: EdgeInsets.only(left: 15),
-                    child: customText(
-                        'Mais utilizados', 20, Colors.black, FontWeight.bold)),
-                SizedBox(
-                  height: 115,
-                  child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.only(left: 15),
-                      child: IconMostUsed(),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                    margin: EdgeInsets.only(left: 15),
-                    child: customText(
-                        'Recentes', 20, Colors.black, FontWeight.bold)),
-                SizedBox(
-                  height: 90,
-                  child: ListView.builder(
-                    itemCount: 10,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Container(
-                      margin: EdgeInsets.only(left: 15),
-                      width: 90,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: IconFavorites(),
-                    ),
-                  ),
-                ),
-              ],
+                child: IconFavorites(),
+              ),
             ),
           ),
         ],
