@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 
+import '../helpers/styles.dart';
+
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
 
@@ -29,11 +31,31 @@ class _ChatPageState extends State<ChatPage> {
         elevation: 0,
         actions: [],
       ),
-      body: ElevatedButton(
-        child: Text(''),
-        onPressed: () {
-          print(_auth.user?.email);
+      body: ListView.separated(
+        itemBuilder: (BuildContext context, int moeda) {
+          return ListTile(
+              leading: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b"))),
+              ),
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  customText('Nome', 18, Colors.black, FontWeight.normal),
+                ],
+              ),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  customText('Profissão', 12, Colors.black, FontWeight.normal),
+                ],
+              ));
         },
+        separatorBuilder: (_, __) => const Divider(),
+        itemCount: 10,
       ),
     );
   }
