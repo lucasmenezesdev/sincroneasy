@@ -80,13 +80,13 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Expanded(child: Text('')),
           Container(
+            height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(40), topRight: Radius.circular(40)),
               color: orange,
             ),
-            height: 500,
             child: Column(
               children: [
                 SizedBox(
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     controller: textControllerEmail,
-                    autofocus: false,
+                    autofocus: true,
                     onChanged: (value) {
                       setState(() {
                         _isEditingEmail = true;
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,
                       controller: textControllerPassword,
-                      autofocus: true,
+                      autofocus: false,
                       onChanged: (value) async {
                         setState(() {
                           _isEditingPassword = true;

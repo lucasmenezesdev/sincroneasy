@@ -128,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   keyboardType: TextInputType.name,
                   textInputAction: TextInputAction.next,
                   controller: textControllerName,
-                  autofocus: false,
+                  autofocus: true,
                   onChanged: (value) {
                     setState(() {
                       _isEditingName = true;
@@ -290,7 +290,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.next,
                     controller: textControllerPasswordRepeat,
-                    autofocus: true,
+                    autofocus: false,
                     onChanged: (value) async {
                       setState(() {
                         _isEditingPasswordRepeat = true;
