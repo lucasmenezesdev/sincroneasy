@@ -18,9 +18,17 @@ class _RegisterPageState extends State<RegisterPage> {
   late FocusNode textFocusNodeName;
   bool _isEditingName = false;
 
+  late TextEditingController textControllerLastname = TextEditingController();
+  late FocusNode textFocusNodeLastname;
+  bool _isEditingLastname = false;
+
   late TextEditingController textControllerEmail = TextEditingController();
   late FocusNode textFocusNodeEmail;
   bool _isEditingEmail = false;
+
+  late TextEditingController textControllerPhone = TextEditingController();
+  late FocusNode textFocusNodePhone;
+  bool _isEditingPhone = false;
 
   late TextEditingController textControllerPassword = TextEditingController();
   late FocusNode textFocusNodePassword;
@@ -71,9 +79,15 @@ class _RegisterPageState extends State<RegisterPage> {
     textControllerName = TextEditingController();
     textControllerName.text = '';
     textFocusNodeName = FocusNode();
+    textControllerLastname = TextEditingController();
+    textControllerLastname.text = '';
+    textFocusNodeLastname = FocusNode();
     textControllerEmail = TextEditingController();
     textControllerEmail.text = '';
     textFocusNodeEmail = FocusNode();
+    textControllerPhone = TextEditingController();
+    textFocusNodePhone = FocusNode();
+    textControllerPhone.text = '';
     textControllerPassword = TextEditingController();
     textControllerPassword.text = '';
     textFocusNodePassword = FocusNode();
@@ -91,17 +105,14 @@ class _RegisterPageState extends State<RegisterPage> {
         elevation: 0,
         foregroundColor: Colors.black,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height - 120,
+      body: ListView(children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 30,
-              ),
               Text(
                 'Registrar',
                 style: GoogleFonts.montserrat(
@@ -120,24 +131,48 @@ class _RegisterPageState extends State<RegisterPage> {
                   autofocus: false,
                   onChanged: (value) {
                     setState(() {
-                      _isEditingEmail = true;
+                      _isEditingName = true;
                     });
                   },
                   onSubmitted: (value) {
-                    textFocusNodeEmail.unfocus();
+                    textFocusNodeName.unfocus();
+                    FocusScope.of(context).requestFocus(textFocusNodeLastname);
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    labelText: 'Nome',
+                    hintText: 'Seu Nome',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    prefixIcon: Icon(Icons.person),
+                    contentPadding: EdgeInsets.only(right: 30),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                width: 300,
+                child: TextField(
+                  focusNode: textFocusNodeLastname,
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  controller: textControllerLastname,
+                  autofocus: false,
+                  onChanged: (value) {
+                    setState(() {
+                      _isEditingLastname = true;
+                    });
+                  },
+                  onSubmitted: (value) {
+                    textFocusNodeLastname.unfocus();
                     FocusScope.of(context).requestFocus(textFocusNodeEmail);
                   },
                   decoration: InputDecoration(
-                    errorText: _isEditingEmail
-                        ? _validateEmail(textControllerEmail.text)
-                        : null,
-                    errorStyle: TextStyle(
-                      fontSize: 12,
-                      color: Colors.redAccent,
-                    ),
                     filled: true,
-                    labelText: 'Nome',
-                    hintText: 'exemplo@dominio.com',
+                    labelText: 'Sobrenome',
+                    hintText: 'Seu Sobrenome',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30)),
                     prefixIcon: Icon(Icons.person),
@@ -163,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   onSubmitted: (value) {
                     textFocusNodeEmail.unfocus();
-                    FocusScope.of(context).requestFocus(textFocusNodeEmail);
+                    FocusScope.of(context).requestFocus(textFocusNodePhone);
                   },
                   decoration: InputDecoration(
                     errorText: _isEditingEmail
@@ -187,6 +222,37 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 30,
               ),
               Container(
+                width: 300,
+                child: TextField(
+                  focusNode: textFocusNodePhone,
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                  controller: textControllerPhone,
+                  autofocus: false,
+                  onChanged: (value) {
+                    setState(() {
+                      _isEditingPhone = true;
+                    });
+                  },
+                  onSubmitted: (value) {
+                    textFocusNodePhone.unfocus();
+                    FocusScope.of(context).requestFocus(textFocusNodePassword);
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    labelText: 'Telefone',
+                    hintText: '+99 9 99999999',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    prefixIcon: Icon(Icons.phone),
+                    contentPadding: EdgeInsets.only(right: 30),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
                   width: 300,
                   child: TextField(
                     focusNode: textFocusNodePassword,
@@ -202,7 +268,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onSubmitted: (value) {
                       textFocusNodePassword.unfocus();
                       FocusScope.of(context)
-                          .requestFocus(textFocusNodePassword);
+                          .requestFocus(textFocusNodePasswordRepeat);
                     },
                     obscureText: visiblePassword,
                     style: TextStyle(),
@@ -211,7 +277,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       labelText: 'Senha',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      prefixIcon: Icon(Icons.password),
+                      prefixIcon: Icon(Icons.lock),
                     ),
                   )),
               SizedBox(
@@ -227,13 +293,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     autofocus: true,
                     onChanged: (value) async {
                       setState(() {
-                        _isEditingPassword = true;
+                        _isEditingPasswordRepeat = true;
                       });
                     },
                     onSubmitted: (value) {
-                      textFocusNodePassword.unfocus();
-                      FocusScope.of(context)
-                          .requestFocus(textFocusNodePassword);
+                      textFocusNodePasswordRepeat.unfocus();
                     },
                     obscureText: visiblePassword,
                     style: TextStyle(),
@@ -242,7 +306,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       labelText: 'Repita a senha',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      prefixIcon: Icon(Icons.password),
+                      prefixIcon: Icon(Icons.lock),
                     ),
                   )),
               SizedBox(
@@ -256,7 +320,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
         ),
-      ),
+      ]),
     );
   }
 }

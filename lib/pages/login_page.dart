@@ -48,20 +48,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  register() async {
-    setState(() => loading = true);
-    try {
-      await context
-          .read<AuthService>()
-          .register(textControllerEmail.text, textControllerPassword.text);
-    } on AuthException catch (e) {
-      setState(() => loading = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message),
-      ));
-    }
-  }
-
   String? _validateEmail(String value) {
     value = value.trim();
 
@@ -129,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     onSubmitted: (value) {
                       textFocusNodeEmail.unfocus();
-                      FocusScope.of(context).requestFocus(textFocusNodeEmail);
+                      FocusScope.of(context)
+                          .requestFocus(textFocusNodePassword);
                     },
                     decoration: InputDecoration(
                       errorText: _isEditingEmail
@@ -167,8 +154,6 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       onSubmitted: (value) {
                         textFocusNodePassword.unfocus();
-                        FocusScope.of(context)
-                            .requestFocus(textFocusNodePassword);
                       },
                       obscureText: visiblePassword,
                       style: TextStyle(),
@@ -177,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: 'Senha',
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30)),
-                        prefixIcon: Icon(Icons.password),
+                        prefixIcon: Icon(Icons.lock),
                       ),
                     )),
                 SizedBox(

@@ -21,65 +21,58 @@ class Initial extends StatelessWidget {
             height: 45,
             child: Image.asset('assets/icons/slogo.png'),
           ),
-          SizedBox(
-            height: 60,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(110, 45),
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => LoginPage()));
+                  },
+                  child:
+                      customText('Entrar', 20, Colors.white, FontWeight.normal),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => LoginPage()));
-                },
-                child:
-                    customText('Entrar', 18, Colors.white, FontWeight.normal),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              Container(
-                color: Colors.grey,
-                width: 1,
-                height: 45,
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(110, 45),
+                SizedBox(
+                  width: 5,
                 ),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => RegisterPage()));
-                },
-                child: customText(
-                    'Registrar', 18, Colors.white, FontWeight.normal),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
+                Container(
+                  color: Colors.grey,
+                  width: 1,
+                  height: 45,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => RegisterPage()));
+                  },
+                  child: customText(
+                      'Registrar', 20, Colors.white, FontWeight.normal),
+                ),
+              ],
+            ),
           ),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
-                fixedSize: const Size(230, 45),
+                fixedSize: const Size(224, 45),
               ),
               onPressed: () {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  Padding(
+                    padding: EdgeInsets.all(5),
                     child: Image.asset('assets/icons/google.png'),
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  customText('Gmail', 18, Colors.white, FontWeight.normal),
+                  customText('Gmail', 20, Colors.white, FontWeight.normal),
                 ],
               ))
         ],
