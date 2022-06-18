@@ -23,7 +23,6 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
-**\sincroneasy\android\app\src\google-services.json
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -47,3 +46,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/google-services.json
+**/android/app/google-services.json

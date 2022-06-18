@@ -33,7 +33,7 @@ class AuthService extends ChangeNotifier {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
-      user = userCredential.user;
+      _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw AuthException('Senha muito curta! Mínimo de 6 caracteres.');
@@ -47,7 +47,6 @@ class AuthService extends ChangeNotifier {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      user = userCredential.user;
       _getUser();
       print(user?.email);
     } on FirebaseAuthException catch (e) {
