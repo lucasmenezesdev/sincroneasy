@@ -10,7 +10,7 @@ class UserClient extends ChangeNotifier implements User {
   @override
   late String lastName;
   @override
-  late String number;
+  late String phone;
   @override
   late String email;
   late List favorites;
@@ -22,7 +22,7 @@ class UserClient extends ChangeNotifier implements User {
   get getUid => uid;
   get getName => name;
   get getLastName => lastName;
-  get getNumber => number;
+  get getPhone => phone;
   get getFavorites => favorites;
   get getFoto => foto;
   get getLocalization => localization;
@@ -32,7 +32,7 @@ class UserClient extends ChangeNotifier implements User {
   set setUid(n) => uid = n;
   set setName(n) => name = n;
   set setLastName(n) => lastName = n;
-  set setNumber(n) => number = n;
+  set setPhone(n) => phone = n;
   set setFavorites(n) => favorites = n;
   set setFoto(n) => foto = n;
   set setLocalization(n) => localization = n;

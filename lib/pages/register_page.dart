@@ -52,6 +52,11 @@ class _RegisterPageState extends State<RegisterPage> {
       await context
           .read<AuthService>()
           .register(textControllerEmail.text, textControllerPassword.text);
+      await context.read<AuthService>().writeUser(
+          textControllerName.text,
+          textControllerLastname.text,
+          textControllerEmail.text,
+          textControllerPhone.text);
     } on AuthException catch (e) {
       setState(() => loading = false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -313,7 +318,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 25,
               ),
               CustomButton(
-                onPressed: () async {},
+                onPressed: () async {
+                  register();
+                },
                 text: 'Confirmar',
                 color: blue,
               ),

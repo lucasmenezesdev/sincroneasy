@@ -23,12 +23,12 @@ abstract class User {
     _lastName = lastName;
   }
 
-  late String _number;
+  late String _phone;
 
-  String get number => _number;
+  String get phone => _phone;
 
-  set number(String number) {
-    _number = number;
+  set phone(String phone) {
+    _phone = phone;
   }
 
   late String _email;

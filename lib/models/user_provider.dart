@@ -2,7 +2,7 @@ class UserClient {
   late String _uid;
   late String _name;
   late String _lastName;
-  late String _number;
+  late String _phone;
   late String _foto;
   late String _localization;
   late String _email;
@@ -14,7 +14,7 @@ class UserClient {
   get getUid => _uid;
   get getName => _name;
   get getLastName => _lastName;
-  get getNumber => _number;
+  get getNumber => _phone;
   get getFoto => _foto;
   get getLocalization => _localization;
   get getEmail => _email;
@@ -26,7 +26,7 @@ class UserClient {
   set setUid(n) => _uid = n;
   set setName(n) => _name = n;
   set setLastName(n) => _lastName = n;
-  set setNumber(n) => _number = n;
+  set setNumber(n) => _phone = n;
   set setFoto(n) => _foto = n;
   set setLocalization(n) => _localization = n;
   set setEmail(n) => _email = n;
