@@ -47,31 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCmXHJQ4rhz7R_q0_yUqNVie7wMtiYO9Qo',
-    appId: '1:1051490625127:web:a27cecc388b3d0ad4916c2',
-    messagingSenderId: '1051490625127',
-    projectId: 'sincroneasy-app',
-    authDomain: 'sincroneasy-app.firebaseapp.com',
-    storageBucket: 'sincroneasy-app.appspot.com',
-    measurementId: 'G-5ZEF38PRRT',
+    apiKey: 'AIzaSyAk6PSN8txk3sov-sewB_4YnlHcGGa7FGU',
+    appId: '1:437561916381:web:a1c5206f3faaa8415f1434',
+    messagingSenderId: '437561916381',
+    projectId: 'firebase-ofc',
+    authDomain: 'fir-ofc.firebaseapp.com',
+    storageBucket: 'firebase-ofc.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCRCH2ZXMiOZrYzYqzyuf4ZCVxuSymp08Y',
-    appId: '1:1051490625127:android:b1dea52bdce860404916c2',
-    messagingSenderId: '1051490625127',
-    projectId: 'sincroneasy-app',
-    storageBucket: 'sincroneasy-app.appspot.com',
+    apiKey: 'AIzaSyBEJPsZ9WiKxYKlLTSQoJup0r5jRdSzUGc',
+    appId: '1:437561916381:android:e4e8ed5157479a135f1434',
+    messagingSenderId: '437561916381',
+    projectId: 'firebase-ofc',
+    storageBucket: 'firebase-ofc.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDLGxDRaB551CmXupTzjQnDml49637dPWk',
-    appId: '1:1051490625127:ios:90fb94058b3665a24916c2',
-    messagingSenderId: '1051490625127',
-    projectId: 'sincroneasy-app',
-    storageBucket: 'sincroneasy-app.appspot.com',
-    androidClientId: '1051490625127-c7av6ndfronp7ouijm7m2gr1r3shbiv0.apps.googleusercontent.com',
-    iosClientId: '1051490625127-csaiv6rncc7bti1dpttk7du2cqq5mr79.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBGJwAV1hnCDNR5DdfPZEYu-4g7AVBNeOA',
+    appId: '1:437561916381:ios:cc038a899efee4b65f1434',
+    messagingSenderId: '437561916381',
+    projectId: 'firebase-ofc',
+    storageBucket: 'firebase-ofc.appspot.com',
+    iosClientId: '437561916381-6qo7fnc44fes9pvrd2mpiinp71dd00r6.apps.googleusercontent.com',
     iosBundleId: 'com.example.sincroneasy',
   );
 }
