@@ -7,6 +7,7 @@ import 'package:sincroneasy/pages/initial.dart';
 import 'package:sincroneasy/pages/login_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 import 'package:sincroneasy/widgets/auth_check_widget.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Initial(),
+      home: AuthCheck(),
     );
   }
 }
