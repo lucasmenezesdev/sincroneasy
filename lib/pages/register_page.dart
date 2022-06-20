@@ -47,6 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool loading = false;
 
   register() async {
+    print('registrando');
     setState(() => loading = true);
     try {
       await context
@@ -317,13 +318,11 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 25,
               ),
-              CustomButton(
-                onPressed: () async {
-                  register();
-                },
-                text: 'Confirmar',
-                color: blue,
-              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    register();
+                  },
+                  child: Text('Confirmar'))
             ],
           ),
         ),

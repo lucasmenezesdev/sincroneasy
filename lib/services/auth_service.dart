@@ -35,7 +35,7 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future register(String email, String password) async {
+  register(String email, String password) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
