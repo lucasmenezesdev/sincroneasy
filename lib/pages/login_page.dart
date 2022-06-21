@@ -36,9 +36,8 @@ class _LoginPageState extends State<LoginPage> {
     print("Logando");
     setState(() => _isLoggingIn = true);
     try {
-      await context
-          .read<AuthService>()
-          .login(textControllerEmail.text, textControllerPassword.text);
+      await context.read<AuthService>().login(
+          textControllerEmail.text, textControllerPassword.text, context);
     } on AuthException catch (e) {
       setState(() => _isLoggingIn = false);
       print(e);

@@ -50,9 +50,8 @@ class _RegisterPageState extends State<RegisterPage> {
     print('registrando');
     setState(() => loading = true);
     try {
-      await context
-          .read<AuthService>()
-          .register(textControllerEmail.text, textControllerPassword.text);
+      await context.read<AuthService>().register(
+          textControllerEmail.text, textControllerPassword.text, context);
       await context.read<AuthService>().writeUser(
           textControllerName.text,
           textControllerLastname.text,

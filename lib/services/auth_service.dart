@@ -35,11 +35,12 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future register(String email, String password) async {
+  Future register(String email, String password, BuildContext context) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       _getUser();
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw AuthException('Senha muito curta! Mínimo de 6 caracteres.');
@@ -51,11 +52,12 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  login(String email, String password) async {
+  Future login(String email, String password, BuildContext context) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       _getUser();
+      Navigator.pop(context);
       print(user?.email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -68,7 +70,8 @@ class AuthService extends ChangeNotifier {
   }
 
   //função para escrever os dados do usuario cadastrado no banco de dados
-  writeUser(String name, String lastName, String email, String phone) async {
+  Future writeUser(
+      String name, String lastName, String email, String phone) async {
     try {
       /*basta colocar o nome do path e setar os dados, a mesma coisa é feita 
       para update e delete de dados*/
