@@ -18,13 +18,14 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
-  String url =
-      "https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b";
   bool _isHovering = false;
   navigate() {}
+  String foto =
+      'https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b%22';
 
   @override
   Widget build(BuildContext context) {
+    UserClient currentUser = Provider.of<UserClient>(context);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -88,25 +89,28 @@ class _PerfilPageState extends State<PerfilPage> {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       image: DecorationImage(
-                          image: NetworkImage(url), fit: BoxFit.cover)),
+                          image: NetworkImage(foto), fit: BoxFit.cover)),
                 ),
                 Positioned(
                   bottom: -50,
                   left: 0,
                   right: 0,
                   child: Center(
-                      child: Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            boxShadow: [
-                              const BoxShadow(
-                                  color: Colors.white, spreadRadius: 4),
-                            ],
-                            image: DecorationImage(
-                                fit: BoxFit.cover, image: NetworkImage(url)),
-                          ))),
+                      child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          boxShadow: [
+                            const BoxShadow(
+                                color: Colors.white, spreadRadius: 4),
+                          ],
+                          image: DecorationImage(
+                              fit: BoxFit.cover, image: NetworkImage(foto)),
+                        )),
+                  )),
                 ),
               ],
             ),
@@ -116,7 +120,11 @@ class _PerfilPageState extends State<PerfilPage> {
           Flexible(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: customText('nome', 22, Colors.black87, FontWeight.w500),
+              child: customText(
+                  '${currentUser.getName} ${currentUser.getLastName}',
+                  22,
+                  Colors.black87,
+                  FontWeight.w500),
             ),
             flex: 2,
           ),

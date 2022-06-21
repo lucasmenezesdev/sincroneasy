@@ -30,11 +30,23 @@ class UserClient extends ChangeNotifier implements User {
   get getPlan => plan;
 
   set setUid(n) => uid = n;
-  set setName(n) => name = n;
-  set setLastName(n) => lastName = n;
+  setName(String name) {
+    this.name = name;
+    notifyListeners();
+  }
+
+  setLastName(String lastName) {
+    this.lastName = lastName;
+    notifyListeners();
+  }
+
+  setFoto(String foto) {
+    this.foto = foto;
+    notifyListeners();
+  }
+
   set setPhone(n) => phone = n;
   set setFavorites(n) => favorites = n;
-  set setFoto(n) => foto = n;
   set setLocalization(n) => localization = n;
   set setEmail(n) => email = n;
   set setPlan(n) => plan = n;

@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sincroneasy/models/user_client.dart';
 import 'package:sincroneasy/pages/register_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
+import 'package:sincroneasy/services/firestore_db.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
 
 import '../helpers/styles.dart';
