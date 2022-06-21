@@ -35,7 +35,7 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future register(String email, String password) async {
+  register(String email, String password) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -45,8 +45,6 @@ class AuthService extends ChangeNotifier {
         throw AuthException('Senha muito curta! Mínimo de 6 caracteres.');
       } else if (e.code == 'email-already-in-use') {
         throw AuthException('Este e-mail já está cadastrado.');
-      } else {
-        throw AuthException(e.message.toString());
       }
     }
   }
