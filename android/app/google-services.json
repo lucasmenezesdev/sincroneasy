@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "1051490625127",
+    "project_id": "sincroneasy-app",
+    "storage_bucket": "sincroneasy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051490625127:android:b1dea52bdce860404916c2",
+        "android_client_info": {
+          "package_name": "com.example.sincroneasy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051490625127-stiavqe1t9087ocvteloif8qdifm2831.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRCH2ZXMiOZrYzYqzyuf4ZCVxuSymp08Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051490625127-stiavqe1t9087ocvteloif8qdifm2831.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1051490625127-csaiv6rncc7bti1dpttk7du2cqq5mr79.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sincroneasy"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051490625127:android:e69943ba7c78fef64916c2",
+        "android_client_info": {
+          "package_name": "com.sincroneasy.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051490625127-d4b8nbmgb0k55a03v9u7dk392iq9i6j4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sincroneasy.app",
+            "certificate_hash": "8635dab6eb5a1e14d2090d6144e7f9431a6fce6c"
+          }
+        },
+        {
+          "client_id": "1051490625127-stiavqe1t9087ocvteloif8qdifm2831.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRCH2ZXMiOZrYzYqzyuf4ZCVxuSymp08Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051490625127-stiavqe1t9087ocvteloif8qdifm2831.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1051490625127-csaiv6rncc7bti1dpttk7du2cqq5mr79.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sincroneasy"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
