@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/models/user_client.dart';
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';
+import 'package:sincroneasy/services/auth_service.dart';
+import 'package:sincroneasy/services/firestore_db.dart';
+import 'package:sincroneasy/services/user_data_controller.dart';
 import 'package:sincroneasy/widgets/modal_bottom_sinc.dart';
 import 'pages/agenda_page.dart';
 
@@ -32,6 +37,8 @@ class _LayoutState extends State<Layout> {
 
   @override
   Widget build(BuildContext context) {
+    UserDataController getUserData = UserDataController(context: context);
+    getUserData.getUserData();
     return Scaffold(
       body: PageView(
         controller: pc,
