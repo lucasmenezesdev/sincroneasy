@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';
@@ -47,7 +45,7 @@ class _LayoutState extends State<Layout> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {
+        onPressed: () async {
           modal_bottom_sinc(context);
         },
         child: SizedBox(

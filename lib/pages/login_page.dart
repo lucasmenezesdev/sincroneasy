@@ -78,9 +78,25 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
-          Expanded(child: Text('')),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 60,
+                  child: Image.asset('assets/icons/favicon.png'),
+                ),
+                SizedBox(
+                  height: 40,
+                  child: Image.asset('assets/icons/slogo.png'),
+                ),
+              ],
+            ),
+          ),
           Container(
             height: MediaQuery.of(context).size.height * 0.7,
             width: MediaQuery.of(context).size.width,
@@ -97,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Login',
                   style: GoogleFonts.montserrat(
-                      fontSize: 25, color: blue, fontWeight: FontWeight.bold),
+                      fontSize: 25, color: cream, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: 50,
