@@ -26,6 +26,11 @@ class UserDataController {
           await _db.collection('consumers').doc(_authService.user?.uid).get();
       _currentUser.setName(_snapshot.get('name'));
       _currentUser.setLastName(_snapshot.get('lastname'));
+      _currentUser.setFoto(_snapshot.get('profile_image'));
+      _currentUser.setPhone(_snapshot.get('phone'));
+      _currentUser.setEmail(_snapshot.get('email'));
+      _currentUser.setUid(_snapshot.id);
+
       getUserFavorites();
     }
   }
@@ -37,9 +42,9 @@ class UserDataController {
           .doc(_authService.user?.uid)
           .collection('favorites')
           .get();
-      _snapshot.docs.forEach((document) {
+      for (var document in _snapshot.docs) {
         _favorites.add(document.data().values.toString());
-      });
+      }
       _currentUser.setFavorites(_favorites);
     }
   }
@@ -51,10 +56,10 @@ class UserDataController {
           .doc(_authService.user?.uid)
           .collection('services')
           .get();
-      _snapshot.docs.forEach((document) {
+      for (var document in _snapshot.docs) {
         _favorites.add(document.data().values.toString());
-      });
-      _currentUser.setServices = _services;
+      }
+      _currentUser.setServices(_services);
     }
   }
 }

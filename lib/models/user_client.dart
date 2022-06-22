@@ -30,7 +30,11 @@ class UserClient extends ChangeNotifier implements User {
   get getEmail => email;
   get getPlan => plan;
 
-  set setUid(n) => uid = n;
+  setUid(String uid) {
+    this.uid = uid;
+    notifyListeners();
+  }
+
   setName(String name) {
     this.name = name;
     notifyListeners();
@@ -46,18 +50,26 @@ class UserClient extends ChangeNotifier implements User {
     notifyListeners();
   }
 
-  set setPhone(n) => phone = n;
+  setPhone(String phone) {
+    this.phone = phone;
+    notifyListeners();
+  }
+
   setFavorites(List favorites) {
     this.favorites = favorites;
     notifyListeners();
   }
 
-  set setServices(List<Service> services) => {
-        this.services = services,
-        notifyListeners(),
-      };
+  setServices(List<Service> services) {
+    this.services = services;
+    notifyListeners();
+  }
+
+  setEmail(String email) {
+    this.email = email;
+    notifyListeners();
+  }
 
   set setLocalization(n) => localization = n;
-  set setEmail(n) => email = n;
   set setPlan(n) => plan = n;
 }

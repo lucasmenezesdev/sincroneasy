@@ -89,7 +89,8 @@ class _PerfilPageState extends State<PerfilPage> {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       image: DecorationImage(
-                          image: NetworkImage(foto), fit: BoxFit.cover)),
+                          image: NetworkImage(currentUser.getFoto),
+                          fit: BoxFit.cover)),
                 ),
                 Positioned(
                   bottom: -50,
@@ -108,7 +109,8 @@ class _PerfilPageState extends State<PerfilPage> {
                                 color: Colors.white, spreadRadius: 4),
                           ],
                           image: DecorationImage(
-                              fit: BoxFit.cover, image: NetworkImage(foto)),
+                              fit: BoxFit.cover,
+                              image: NetworkImage(currentUser.getFoto)),
                         )),
                   )),
                 ),
@@ -119,7 +121,7 @@ class _PerfilPageState extends State<PerfilPage> {
           const Spacer(),
           Flexible(
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.only(top: 15),
               child: customText(
                   '${currentUser.getName} ${currentUser.getLastName}',
                   22,
