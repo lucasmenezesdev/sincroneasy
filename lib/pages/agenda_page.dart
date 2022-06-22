@@ -42,7 +42,8 @@ class _AgendaPageState extends State<AgendaPage> {
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  customText('Prestador', 18, Colors.black, FontWeight.normal),
+                  customText('${userClient.getName}', 18, Colors.black,
+                      FontWeight.normal),
                   customText('Serviço', 14, Colors.black, FontWeight.normal),
                 ],
               ),

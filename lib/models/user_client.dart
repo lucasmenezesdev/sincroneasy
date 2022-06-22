@@ -24,6 +24,7 @@ class UserClient extends ChangeNotifier implements User {
   get getLastName => lastName;
   get getPhone => phone;
   get getFavorites => favorites;
+  get getServices => services;
   get getFoto => foto;
   get getLocalization => localization;
   get getEmail => email;
@@ -50,6 +51,11 @@ class UserClient extends ChangeNotifier implements User {
     this.favorites = favorites;
     notifyListeners();
   }
+
+  set setServices(List<Service> services) => {
+        this.services = services,
+        notifyListeners(),
+      };
 
   set setLocalization(n) => localization = n;
   set setEmail(n) => email = n;

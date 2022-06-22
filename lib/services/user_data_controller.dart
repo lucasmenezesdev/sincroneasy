@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:sincroneasy/models/service.dart';
 import 'package:sincroneasy/models/user_client.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
@@ -9,7 +10,8 @@ class UserDataController {
   late BuildContext _context;
   late AuthService _authService;
   late UserClient _currentUser;
-  late List<String> _favorites;
+  late List _favorites = [];
+  late List<Service> _services = [];
   late FirebaseFirestore _db;
 
   UserDataController({required BuildContext context}) {
@@ -24,6 +26,7 @@ class UserDataController {
           await _db.collection('consumers').doc(_authService.user?.uid).get();
       _currentUser.setName(_snapshot.get('name'));
       _currentUser.setLastName(_snapshot.get('lastname'));
+      getUserFavorites();
     }
   }
 
@@ -38,6 +41,20 @@ class UserDataController {
         _favorites.add(document.data().values.toString());
       });
       _currentUser.setFavorites(_favorites);
+    }
+  }
+
+  getUserServices() async {
+    if (_authService.user?.uid != null) {
+      final _snapshot = await _db
+          .collection('consumers')
+          .doc(_authService.user?.uid)
+          .collection('services')
+          .get();
+      _snapshot.docs.forEach((document) {
+        _favorites.add(document.data().values.toString());
+      });
+      _currentUser.setServices = _services;
     }
   }
 }
