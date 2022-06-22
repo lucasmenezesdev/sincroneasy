@@ -46,7 +46,11 @@ class UserClient extends ChangeNotifier implements User {
   }
 
   set setPhone(n) => phone = n;
-  set setFavorites(n) => favorites = n;
+  setFavorites(List favorites) {
+    this.favorites = favorites;
+    notifyListeners();
+  }
+
   set setLocalization(n) => localization = n;
   set setEmail(n) => email = n;
   set setPlan(n) => plan = n;

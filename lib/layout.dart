@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-=======
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/models/user_client.dart';
->>>>>>> c5d58045d1f3af18b694138cc84717f4781416c1
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';

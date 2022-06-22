@@ -37,7 +37,7 @@ class UserDataController {
       _snapshot.docs.forEach((document) {
         _favorites.add(document.data().values.toString());
       });
+      _currentUser.setFavorites(_favorites);
     }
-    return _favorites;
   }
 }
