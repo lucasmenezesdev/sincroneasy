@@ -35,20 +35,6 @@ class _AuthCheckState extends State<AuthCheck> {
     } else if (auth.user == null) {
       return Initial();
     } else {
-      AuthService authService = Provider.of<AuthService>(context);
-      UserClient currentUser = Provider.of<UserClient>(context);
-      var db = FirestoreDB.get();
-      getUserData() async {
-        if (authService.user?.uid != null) {
-          final snapshot =
-              await db.collection('consumers').doc(authService.user?.uid).get();
-          currentUser.setName(snapshot.get('name'));
-          currentUser.setFoto(snapshot.get('foto'));
-          currentUser.setLastName(snapshot.get('lastname'));
-        }
-      }
-
-      getUserData();
       return Layout();
     }
   }
