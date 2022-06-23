@@ -58,11 +58,16 @@ class UserDataController {
           .collection('services')
           .get();
       for (var document in _snapshot.docs) {
+        final _snapshot2 = await _db
+            .collection('providers')
+            .doc(document.get('providerUid'))
+            .get();
         Service service = Service(
-          providerUid: document.get('providerUid'),
-          service: document.get('service'),
-          date: document.get('date'),
-        );
+            providerUid: document.get('providerUid'),
+            service: document.get('service'),
+            date: document.get('date'),
+            providerImage: _snapshot2.get('imageURL'),
+            providerName: _snapshot2.get('name'));
         _services.add(service);
       }
       _currentUser.setServices(_services);

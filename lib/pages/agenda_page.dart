@@ -15,7 +15,6 @@ class _AgendaPageState extends State<AgendaPage> {
   @override
   Widget build(BuildContext context) {
     UserClient userClient = Provider.of<UserClient>(context);
-    AgendaController controller = AgendaController();
     List services = userClient.getServices;
     return Scaffold(
       appBar: AppBar(
@@ -38,28 +37,28 @@ class _AgendaPageState extends State<AgendaPage> {
               leading: Container(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
-                  child: Image.network(
-                      "${controller.getImageProvider('${services[service].providerUid}')}"),
+                  child: Image.network(services[service].providerImage),
                 ),
               ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  customText(
-                      '${controller.getNameProvider('${services[service].providerUid}')}',
-                      18,
-                      Colors.black,
+                  customText(services[service].providerName, 18, Colors.black,
                       FontWeight.normal),
-                  customText('${services[service].service}', 14, Colors.black,
+                  customText(services[service].service, 14, Colors.black,
                       FontWeight.normal),
                 ],
               ),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  customText('${services[service].date}', 12, Colors.black,
-                      FontWeight.normal),
-                ],
+              trailing: SizedBox(
+                width: 100,
+                height: 20,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    customText('${services[service].date}', 12, Colors.black,
+                        FontWeight.normal),
+                  ],
+                ),
               ));
         },
         separatorBuilder: (_, __) => const Divider(),
