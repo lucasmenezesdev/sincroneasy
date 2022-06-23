@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
-import 'package:sincroneasy/models/user_client.dart';
+import 'package:sincroneasy/repositories/user_client.dart';
 import 'package:sincroneasy/pages/chat_page.dart';
 import 'package:sincroneasy/pages/home_page.dart';
 import 'package:sincroneasy/pages/perfil_page.dart';

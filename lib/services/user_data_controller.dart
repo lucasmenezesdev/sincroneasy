@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/models/service.dart';
-import 'package:sincroneasy/models/user_client.dart';
+import 'package:sincroneasy/repositories/user_client.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
 

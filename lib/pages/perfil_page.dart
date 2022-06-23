@@ -7,7 +7,7 @@ import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
 import 'package:sincroneasy/widgets/modal_bottom_config.dart';
 
-import '../models/user_client.dart';
+import '../repositories/user_client.dart';
 import '../services/auth_service.dart';
 
 class PerfilPage extends StatefulWidget {

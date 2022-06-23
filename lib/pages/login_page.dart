@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
-import 'package:sincroneasy/models/user_client.dart';
+import 'package:sincroneasy/repositories/user_client.dart';
 import 'package:sincroneasy/pages/register_page.dart';
 import 'package:sincroneasy/services/auth_service.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
