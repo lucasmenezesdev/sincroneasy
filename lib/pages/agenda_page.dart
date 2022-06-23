@@ -39,14 +39,14 @@ class _AgendaPageState extends State<AgendaPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.network(
-                      "${controller.getImageProvider('${services[service].uid}')}"),
+                      "${controller.getImageProvider('${services[service].providerUid}')}"),
                 ),
               ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   customText(
-                      '${controller.getNameProvider('${services[service].uid}')}',
+                      '${controller.getNameProvider('${services[service].providerUid}')}',
                       18,
                       Colors.black,
                       FontWeight.normal),
@@ -58,8 +58,6 @@ class _AgendaPageState extends State<AgendaPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   customText('${services[service].date}', 12, Colors.black,
-                      FontWeight.normal),
-                  customText('${services[service].hour}', 14, Colors.black,
                       FontWeight.normal),
                 ],
               ));

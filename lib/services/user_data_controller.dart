@@ -32,6 +32,7 @@ class UserDataController {
       _currentUser.setUid(_snapshot.id);
 
       getUserFavorites();
+      getUserServices();
     }
   }
 
@@ -43,7 +44,7 @@ class UserDataController {
           .collection('favorites')
           .get();
       for (var document in _snapshot.docs) {
-        _favorites.add(document.data().values.toString());
+        _favorites.add(document.data().values);
       }
       _currentUser.setFavorites(_favorites);
     }
@@ -57,7 +58,12 @@ class UserDataController {
           .collection('services')
           .get();
       for (var document in _snapshot.docs) {
-        _favorites.add(document.data().values.toString());
+        Service service = Service(
+          providerUid: document.get('providerUid'),
+          service: document.get('service'),
+          date: document.get('date'),
+        );
+        _services.add(service);
       }
       _currentUser.setServices(_services);
     }
