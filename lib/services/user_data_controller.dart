@@ -22,55 +22,84 @@ class UserDataController {
   }
   getUserData() async {
     if (_authService.user?.uid != null) {
-      final _snapshot =
-          await _db.collection('consumers').doc(_authService.user?.uid).get();
-      _currentUser.setName(_snapshot.get('name'));
-      _currentUser.setLastName(_snapshot.get('lastname'));
-      _currentUser.setFoto(_snapshot.get('profile_image'));
-      _currentUser.setPhone(_snapshot.get('phone'));
-      _currentUser.setEmail(_snapshot.get('email'));
-      _currentUser.setUid(_snapshot.id);
+      try {
+        final _snapshot =
+            await _db.collection('consumers').doc(_authService.user?.uid).get();
+        _currentUser.setName(_snapshot.get('name'));
+        _currentUser.setLastName(_snapshot.get('lastname'));
+        _currentUser.setFoto(_snapshot.get('profile_image'));
+        _currentUser.setPhone(_snapshot.get('phone'));
+        _currentUser.setEmail(_snapshot.get('email'));
+        _currentUser.setUid(_snapshot.id);
 
-      getUserFavorites();
-      getUserServices();
+        getUserFavorites();
+        getUserServices();
+      } on FirebaseException catch (e) {
+        print(e);
+      }
     }
   }
 
   getUserFavorites() async {
     if (_authService.user?.uid != null) {
-      final _snapshot = await _db
-          .collection('consumers')
-          .doc(_authService.user?.uid)
-          .collection('favorites')
-          .get();
-      for (var document in _snapshot.docs) {
-        _favorites.add(document.data().values);
+      try {
+        final _snapshot = await _db
+            .collection('consumers')
+            .doc(_authService.user?.uid)
+            .collection('favorites')
+            .get();
+        for (var document in _snapshot.docs) {
+          _favorites.add(document.data().values);
+        }
+        _currentUser.setFavorites(_favorites);
+      } on FirebaseException catch (e) {
+        print(e);
       }
-      _currentUser.setFavorites(_favorites);
     }
   }
 
   getUserServices() async {
     if (_authService.user?.uid != null) {
-      final _snapshot = await _db
-          .collection('consumers')
-          .doc(_authService.user?.uid)
-          .collection('services')
-          .get();
-      for (var document in _snapshot.docs) {
-        final _snapshot2 = await _db
-            .collection('providers')
-            .doc(document.get('providerUid'))
+      try {
+        final _snapshot = await _db
+            .collection('consumers')
+            .doc(_authService.user?.uid)
+            .collection('services')
             .get();
-        Service service = Service(
-            providerUid: document.get('providerUid'),
-            service: document.get('service'),
-            date: document.get('date'),
-            providerImage: _snapshot2.get('imageURL'),
-            providerName: _snapshot2.get('name'));
-        _services.add(service);
+        for (var document in _snapshot.docs) {
+          try {
+            final _snapshot2 = await _db
+                .collection('providers')
+                .doc(document.get('providerUid'))
+                .get();
+            Service service = Service(
+                providerUid: document.get('providerUid'),
+                service: document.get('service'),
+                date: document.get('date'),
+                providerImage: _snapshot2.get('imageURL'),
+                providerName: _snapshot2.get('name'));
+            _services.add(service);
+          } on FirebaseException catch (e) {
+            print(e.message);
+          }
+        }
+        _currentUser.setServices(_services);
+      } on FirebaseException catch (e) {
+        print(e.message);
       }
-      _currentUser.setServices(_services);
+    }
+  }
+
+  postProfileImage(String url) async {
+    if (_authService.user?.uid != null) {
+      try {
+        await _db
+            .collection('consumers')
+            .doc(_authService.user?.uid)
+            .update({'profile_image': url});
+      } on FirebaseException catch (e) {
+        print(e.message);
+      }
     }
   }
 }

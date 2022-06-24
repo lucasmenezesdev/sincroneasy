@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
+import 'package:sincroneasy/services/firebase_storage.dart';
+import 'package:sincroneasy/services/firestore_db.dart';
+import 'package:sincroneasy/services/user_data_controller.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
 import 'package:sincroneasy/widgets/modal_bottom_config.dart';
 
@@ -23,21 +27,37 @@ class PerfilPage extends StatefulWidget {
 
 class _PerfilPageState extends State<PerfilPage> {
   bool _isHovering = false;
-  File? pickedImage;
-
-  Future pickImage(ImageSource source) async {
-    try {
-      final pickedImage = await ImagePicker().pickImage(source: source);
-      if (pickedImage == null) return;
-      final tempImage = File(pickedImage.path);
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     UserClient currentUser = Provider.of<UserClient>(context);
+    File? pickedImage;
+    UserDataController userController = UserDataController(context: context);
+
+    FirebaseStorage storageRef = FirebaseStg.get();
+
+    Future pickImage(ImageSource source) async {
+      try {
+        final pickedImage = await ImagePicker().pickImage(source: source);
+        if (pickedImage == null) return;
+        final tempImage = File(pickedImage.path);
+        try {
+          await storageRef
+              .ref(
+                  'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
+              .putFile(tempImage);
+          final imageURL = await storageRef
+              .ref(
+                  'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
+              .getDownloadURL();
+          userController.postProfileImage(imageURL);
+        } on FirebaseException catch (e) {
+          print(e.message);
+        }
+      } on PlatformException catch (e) {
+        print(e.message);
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
