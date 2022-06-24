@@ -105,70 +105,90 @@ class _PerfilPageState extends State<PerfilPage> {
                   left: 0,
                   right: 0,
                   child: Center(
-                      child: InkWell(
-                    onTap: () => showModalBottomSheet(
-                        context: context,
-                        builder: (context) => SizedBox(
-                              width: MediaQuery.of(context).size.width,
-                              height: 100,
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () => imagePickerController
-                                          .pickImage(ImageSource.camera),
-                                      child: SizedBox(
-                                        width: 150,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.camera_alt,
-                                              size: 50,
-                                            ),
-                                            Text(
-                                              'Câmera',
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () => imagePickerController
-                                          .pickImage(ImageSource.gallery),
-                                      child: SizedBox(
-                                        width: 150,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.image_search,
-                                              size: 50,
-                                            ),
-                                            Text(
-                                              'Galeria',
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                                  ]),
-                            )),
-                    child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          boxShadow: [
-                            const BoxShadow(
-                                color: Colors.white, spreadRadius: 4),
-                          ],
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(currentUser.getFoto)),
-                        )),
+                      child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      boxShadow: [
+                        const BoxShadow(color: Colors.white, spreadRadius: 4),
+                      ],
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(currentUser.getFoto)),
+                    ),
                   )),
                 ),
+                Positioned(
+                    bottom: 10,
+                    right: MediaQuery.of(context).size.width * 0.35,
+                    child: Center(
+                      child: ClipOval(
+                        child: Container(
+                          color: Colors.white,
+                          child: IconButton(
+                            color: orange,
+                            icon: Icon(
+                              Icons.camera_alt,
+                            ),
+                            iconSize: 30,
+                            onPressed: () => showModalBottomSheet(
+                                context: context,
+                                builder: (context) => SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 100,
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            InkWell(
+                                              onTap: () => imagePickerController
+                                                  .pickImage(
+                                                      ImageSource.camera),
+                                              child: SizedBox(
+                                                width: 150,
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.camera_alt,
+                                                      size: 50,
+                                                    ),
+                                                    Text(
+                                                      'Câmera',
+                                                      style: TextStyle(
+                                                          fontSize: 20),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () => imagePickerController
+                                                  .pickImage(
+                                                      ImageSource.gallery),
+                                              child: SizedBox(
+                                                width: 150,
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.image_search,
+                                                      size: 50,
+                                                    ),
+                                                    Text(
+                                                      'Galeria',
+                                                      style: TextStyle(
+                                                          fontSize: 20),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ]),
+                                    )),
+                          ),
+                        ),
+                      ),
+                    ))
               ],
             ),
             flex: 5,
