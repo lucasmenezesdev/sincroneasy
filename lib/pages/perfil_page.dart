@@ -33,7 +33,7 @@ class _PerfilPageState extends State<PerfilPage> {
   Widget build(BuildContext context) {
     UserClient currentUser = Provider.of<UserClient>(context);
     ImagePickerController imagePickerController =
-        ImagePickerController(context: context);
+        ImagePickerController(userUID: currentUser.getUid);
     return Scaffold(
       appBar: AppBar(
         title: Row(

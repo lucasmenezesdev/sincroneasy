@@ -12,14 +12,13 @@ import 'package:sincroneasy/services/firestore_db.dart';
 
 class ImagePickerController {
   late FirebaseFirestore _db;
-  late FirebaseStorage storageRef;
-  late UserClient currentUser;
-  late BuildContext context;
+  late FirebaseStorage _storageRef;
+  late String _userUID;
 
-  ImagePickerController({required BuildContext context}) {
+  ImagePickerController({required String userUID}) {
     _db = FirestoreDB.get();
-    storageRef = FirebaseStg.get();
-    currentUser = Provider.of<UserClient>(context);
+    _storageRef = FirebaseStg.get();
+    _userUID = userUID;
   }
 
   Future pickImage(ImageSource source) async {
@@ -28,13 +27,11 @@ class ImagePickerController {
       if (pickedImage == null) return;
       final tempImage = File(pickedImage.path);
       try {
-        await storageRef
-            .ref(
-                'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
+        await _storageRef
+            .ref('users/consumers/${_userUID}/profile/${tempImage.toString()}')
             .putFile(tempImage);
-        final imageURL = await storageRef
-            .ref(
-                'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
+        final imageURL = await _storageRef
+            .ref('users/consumers/${_userUID}/profile/${tempImage.toString()}')
             .getDownloadURL();
         postProfileImage(imageURL);
       } on FirebaseException catch (e) {
@@ -46,11 +43,11 @@ class ImagePickerController {
   }
 
   postProfileImage(String url) async {
-    if (currentUser.getUid != null) {
+    if (_userUID != null) {
       try {
         await _db
             .collection('consumers')
-            .doc(currentUser.getUid)
+            .doc(_userUID)
             .update({'profile_image': url});
       } on FirebaseException catch (e) {
         print(e.message);
