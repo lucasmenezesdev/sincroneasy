@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
@@ -19,13 +23,22 @@ class PerfilPage extends StatefulWidget {
 
 class _PerfilPageState extends State<PerfilPage> {
   bool _isHovering = false;
-  navigate() {}
-  String foto =
-      'https://firebasestorage.googleapis.com/v0/b/sincroneasy-app.appspot.com/o/users%2Fclients%2FNlIP8K756Sec8ZTpRQ7aNeMu6312%2Fprofile%2FProfile_Image?alt=media&token=7e151a4b-b8db-4548-8a13-2b91b106645b%22';
+  File? pickedImage;
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final pickedImage = await ImagePicker().pickImage(source: source);
+      if (pickedImage == null) return;
+      final tempImage = File(pickedImage.path);
+    } on PlatformException catch (e) {
+      print(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     UserClient currentUser = Provider.of<UserClient>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -98,7 +111,54 @@ class _PerfilPageState extends State<PerfilPage> {
                   right: 0,
                   child: Center(
                       child: InkWell(
-                    onTap: () {},
+                    onTap: () => showModalBottomSheet(
+                        context: context,
+                        builder: (context) => SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () =>
+                                          pickImage(ImageSource.camera),
+                                      child: SizedBox(
+                                        width: 150,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.camera_alt,
+                                              size: 50,
+                                            ),
+                                            Text(
+                                              'Câmera',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () =>
+                                          pickImage(ImageSource.gallery),
+                                      child: SizedBox(
+                                        width: 150,
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.image_search,
+                                              size: 50,
+                                            ),
+                                            Text(
+                                              'Galeria',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                            )),
                     child: Container(
                         width: 100,
                         height: 100,
