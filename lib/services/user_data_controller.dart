@@ -89,17 +89,4 @@ class UserDataController {
       }
     }
   }
-
-  postProfileImage(String url) async {
-    if (_authService.user?.uid != null) {
-      try {
-        await _db
-            .collection('consumers')
-            .doc(_authService.user?.uid)
-            .update({'profile_image': url});
-      } on FirebaseException catch (e) {
-        print(e.message);
-      }
-    }
-  }
 }

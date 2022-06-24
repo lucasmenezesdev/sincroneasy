@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/services/firebase_storage.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
+import 'package:sincroneasy/services/image_picker_controller.dart';
 import 'package:sincroneasy/services/user_data_controller.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
 import 'package:sincroneasy/widgets/modal_bottom_config.dart';
@@ -31,34 +32,8 @@ class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     UserClient currentUser = Provider.of<UserClient>(context);
-    File? pickedImage;
-    UserDataController userController = UserDataController(context: context);
-
-    FirebaseStorage storageRef = FirebaseStg.get();
-
-    Future pickImage(ImageSource source) async {
-      try {
-        final pickedImage = await ImagePicker().pickImage(source: source);
-        if (pickedImage == null) return;
-        final tempImage = File(pickedImage.path);
-        try {
-          await storageRef
-              .ref(
-                  'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
-              .putFile(tempImage);
-          final imageURL = await storageRef
-              .ref(
-                  'users/consumers/${currentUser.getUid}/profile/${tempImage.toString()}')
-              .getDownloadURL();
-          userController.postProfileImage(imageURL);
-        } on FirebaseException catch (e) {
-          print(e.message);
-        }
-      } on PlatformException catch (e) {
-        print(e.message);
-      }
-    }
-
+    ImagePickerController imagePickerController =
+        ImagePickerController(context: context);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -140,8 +115,8 @@ class _PerfilPageState extends State<PerfilPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     InkWell(
-                                      onTap: () =>
-                                          pickImage(ImageSource.camera),
+                                      onTap: () => imagePickerController
+                                          .pickImage(ImageSource.camera),
                                       child: SizedBox(
                                         width: 150,
                                         child: Row(
@@ -159,8 +134,8 @@ class _PerfilPageState extends State<PerfilPage> {
                                       ),
                                     ),
                                     InkWell(
-                                      onTap: () =>
-                                          pickImage(ImageSource.gallery),
+                                      onTap: () => imagePickerController
+                                          .pickImage(ImageSource.gallery),
                                       child: SizedBox(
                                         width: 150,
                                         child: Row(
