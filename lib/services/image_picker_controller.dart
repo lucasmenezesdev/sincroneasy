@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sincroneasy/models/user_provider.dart';
 import 'package:sincroneasy/services/firebase_storage.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
+import 'package:path/path.dart' as p;
 
 class ImagePickerController {
   late FirebaseFirestore _db;
@@ -28,10 +29,10 @@ class ImagePickerController {
       final tempImage = File(pickedImage.path);
       try {
         await _storageRef
-            .ref('users/consumers/${_userUID}/profile/${tempImage.toString()}')
+            .ref('users/consumers/$_userUID/profile/profile_image')
             .putFile(tempImage);
         final imageURL = await _storageRef
-            .ref('users/consumers/${_userUID}/profile/${tempImage.toString()}')
+            .ref('users/consumers/$_userUID/profile/profile_image')
             .getDownloadURL();
         postProfileImage(imageURL);
       } on FirebaseException catch (e) {

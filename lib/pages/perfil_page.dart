@@ -111,7 +111,8 @@ class _PerfilPageState extends State<PerfilPage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       boxShadow: [
-                        const BoxShadow(color: Colors.white, spreadRadius: 4),
+                        const BoxShadow(
+                            color: Color(0xFAFAFAFA), spreadRadius: 5),
                       ],
                       image: DecorationImage(
                           fit: BoxFit.cover,
@@ -120,12 +121,12 @@ class _PerfilPageState extends State<PerfilPage> {
                   )),
                 ),
                 Positioned(
-                    bottom: 10,
-                    right: MediaQuery.of(context).size.width * 0.35,
+                    bottom: 12,
+                    right: MediaQuery.of(context).size.width * 0.34,
                     child: Center(
                       child: ClipOval(
                         child: Container(
-                          color: Colors.white,
+                          color: Color(0xFAFAFAFA),
                           child: IconButton(
                             color: orange,
                             icon: Icon(
