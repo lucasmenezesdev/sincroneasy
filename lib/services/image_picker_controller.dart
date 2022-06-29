@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:sincroneasy/models/user_provider.dart';
+
 import 'package:sincroneasy/services/firebase_storage.dart';
 import 'package:sincroneasy/services/firestore_db.dart';
 import 'package:path/path.dart' as p;

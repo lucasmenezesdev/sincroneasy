@@ -13,7 +13,7 @@ class UserClient extends ChangeNotifier implements User {
   late String phone;
   @override
   late String email;
-  late List favorites;
+  late List favorites = [];
   late String foto;
   late String localization;
   late bool plan;
