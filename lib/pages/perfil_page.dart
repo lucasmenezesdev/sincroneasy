@@ -1,23 +1,14 @@
-import 'dart:io';
-import 'dart:ui';
-
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
-import 'package:sincroneasy/services/firebase_storage.dart';
-import 'package:sincroneasy/services/firestore_db.dart';
 import 'package:sincroneasy/services/image_picker_controller.dart';
-import 'package:sincroneasy/services/user_data_controller.dart';
 import 'package:sincroneasy/widgets/custom_button_widget.dart';
-import 'package:sincroneasy/widgets/modal_bottom_config.dart';
+import 'package:sincroneasy/widgets/custom_InkWell.dart';
 
 import '../repositories/user_client.dart';
 import '../services/auth_service.dart';
+import '../widgets/profile_imagepicker_modal.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({Key? key}) : super(key: key);
@@ -27,8 +18,6 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
-  bool _isHovering = false;
-
   @override
   Widget build(BuildContext context) {
     UserClient currentUser = Provider.of<UserClient>(context);
@@ -47,203 +36,172 @@ class _PerfilPageState extends State<PerfilPage> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: [
-          InkWell(
-            onHover: (value) {
-              setState(() {
-                value ? _isHovering = true : _isHovering = false;
-              });
-            },
-            hoverColor: Colors.transparent,
-            onTap: () {
-              modal_bottom_config(context);
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                SizedBox(
-                  height: 12,
-                ),
-                Icon(
-                  Icons.settings,
-                  color: Colors.black,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            width: 15,
-          ),
-        ],
       ),
       body: Column(
         children: [
-          Flexible(
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 150,
-                  child: ClipRect(
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
-                      child: Container(color: Colors.black.withOpacity(0)),
+          Row(
+            children: [
+              Flexible(
+                flex: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    children: [
+                      Stack(
+                        children: [
+                          ClipOval(
+                            child: Image(
+                              image: NetworkImage(currentUser.getFoto),
+                              fit: BoxFit.cover,
+                              height: 100,
+                              width: 100,
+                            ),
+                          ),
+                          Positioned(
+                              bottom: -10,
+                              right: -10,
+                              child: ClipOval(
+                                child: Container(
+                                  color: Color(0xFAFAFAFA),
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 30,
+                                    ),
+                                    onPressed: () =>
+                                        profileImageModalBottonSheet(
+                                            context, imagePickerController),
+                                  ),
+                                ),
+                              )),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: customText(
+                            '${currentUser.name}  ${currentUser.getLastName}',
+                            20,
+                            Colors.black87,
+                            FontWeight.bold),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: SizedBox(
+                      width: 150,
+                      child: CustomButton(
+                          text: 'Prestador',
+                          onPressed: () => {},
+                          color: orange),
                     ),
                   ),
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      image: DecorationImage(
-                          image: NetworkImage(currentUser.getFoto),
-                          fit: BoxFit.cover)),
-                ),
-                Positioned(
-                  bottom: -50,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                      child: Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        const BoxShadow(
-                            color: Color(0xFAFAFAFA), spreadRadius: 5),
-                      ],
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(currentUser.getFoto)),
-                    ),
-                  )),
-                ),
-                Positioned(
-                    bottom: 12,
-                    right: MediaQuery.of(context).size.width * 0.34,
-                    child: Center(
-                      child: ClipOval(
-                        child: Container(
-                          color: Color(0xFAFAFAFA),
-                          child: IconButton(
-                            color: orange,
-                            icon: Icon(
-                              Icons.camera_alt,
-                            ),
-                            iconSize: 30,
-                            onPressed: () => showModalBottomSheet(
-                                context: context,
-                                builder: (context) => SizedBox(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 100,
-                                      child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            InkWell(
-                                              onTap: () => imagePickerController
-                                                  .pickImage(
-                                                      ImageSource.camera),
-                                              child: SizedBox(
-                                                width: 150,
-                                                child: Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.camera_alt,
-                                                      size: 50,
-                                                    ),
-                                                    Text(
-                                                      'Câmera',
-                                                      style: TextStyle(
-                                                          fontSize: 20),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () => imagePickerController
-                                                  .pickImage(
-                                                      ImageSource.gallery),
-                                              child: SizedBox(
-                                                width: 150,
-                                                child: Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.image_search,
-                                                      size: 50,
-                                                    ),
-                                                    Text(
-                                                      'Galeria',
-                                                      style: TextStyle(
-                                                          fontSize: 20),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            )
-                                          ]),
-                                    )),
-                          ),
-                        ),
-                      ),
-                    ))
-              ],
-            ),
-            flex: 5,
+                  customText(
+                      'O que é isso ?', 16, Colors.black87, FontWeight.normal)
+                ],
+              )
+            ],
           ),
-          const Spacer(),
           Flexible(
+            flex: 0,
             child: Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: customText(
-                  '${currentUser.getName} ${currentUser.getLastName}',
-                  22,
-                  Colors.black87,
-                  FontWeight.w500),
-            ),
-            flex: 2,
-          ),
-          const Spacer(),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 400,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: orange,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                height: 2,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: ListView(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        'Faça upgrade de sua conta de cliente e seja um prestador de serviços Sincroneasy, garanta já seu plano com 3 meses gratuitos!',
-                        style: TextStyle(
-                            color: blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22),
-                        textAlign: TextAlign.center,
-                      ),
+                    customText(
+                        'Configurações', 20, Colors.black, FontWeight.normal),
+                    Row(
+                      children: [
+                        customText(
+                            'Tema', 16, Colors.black87, FontWeight.normal),
+                        Switch(value: true, onChanged: changeTheme()),
+                      ],
                     ),
-                    CustomButton(
-                      text: 'VER PLANOS',
-                      onPressed: () {},
-                      color: blue,
-                    )
+                    Row(
+                      children: [
+                        customText('Notificações', 16, Colors.black87,
+                            FontWeight.normal),
+                        Switch(value: true, onChanged: changeNotifications()),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Permissões', 16, FontWeight.normal,
+                        Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customText('Conta e Segurança', 20, Colors.black,
+                        FontWeight.normal),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Mudar E-Mail', 16,
+                        FontWeight.normal, Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Mudar Senha', 16,
+                        FontWeight.normal, Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Mudar Telefone', 16,
+                        FontWeight.normal, Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Verificar E-Mail', 16,
+                        FontWeight.normal, Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Verificar Telefone', 16,
+                        FontWeight.normal, Colors.black87),
+                    customInkWell(() async {
+                      await context.read<AuthService>().logout();
+                    }, 'Sair', 16, FontWeight.normal, Colors.black),
+                    customText('Suporte', 20, Colors.black, FontWeight.normal),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'Ajuda', 16, FontWeight.normal,
+                        Colors.black87),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    customInkWell(() => {}, 'FeedBack', 16, FontWeight.normal,
+                        Colors.black87),
                   ],
                 ),
               ),
             ),
-            flex: 7,
           )
         ],
       ),
     );
   }
 }
+
+changeNotifications() {}
+
+changeTheme() {}
