@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -109,7 +110,7 @@ class _PerfilPageState extends State<PerfilPage> {
           Flexible(
             flex: 0,
             child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+              padding: const EdgeInsets.only(left: 15, right: 15),
               child: Container(
                 width: MediaQuery.of(context).size.width,
                 height: 2,
@@ -120,12 +121,15 @@ class _PerfilPageState extends State<PerfilPage> {
           Flexible(
             flex: 1,
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: ListView(
                   children: [
+                    const SizedBox(
+                      height: 15,
+                    ),
                     customText(
                         'Configurações', 20, Colors.black, FontWeight.normal),
                     Row(
@@ -177,9 +181,29 @@ class _PerfilPageState extends State<PerfilPage> {
                     ),
                     customInkWell(() => {}, 'Verificar Telefone', 16,
                         FontWeight.normal, Colors.black87),
-                    customInkWell(() async {
-                      await context.read<AuthService>().logout();
-                    }, 'Sair', 16, FontWeight.normal, Colors.black),
+                    customInkWell(
+                        () => showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                  title: const Text('Sair'),
+                                  content: const Text('Deseja Desconectar ?'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () async {
+                                          await context
+                                              .read<AuthService>()
+                                              .logout();
+                                        },
+                                        child: const Text('Sim')),
+                                    TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('Não'))
+                                  ],
+                                )),
+                        'Sair',
+                        16,
+                        FontWeight.normal,
+                        Colors.black),
                     customText('Suporte', 20, Colors.black, FontWeight.normal),
                     const SizedBox(
                       height: 5,
@@ -191,6 +215,9 @@ class _PerfilPageState extends State<PerfilPage> {
                     ),
                     customInkWell(() => {}, 'FeedBack', 16, FontWeight.normal,
                         Colors.black87),
+                    const SizedBox(
+                      height: 15,
+                    )
                   ],
                 ),
               ),
