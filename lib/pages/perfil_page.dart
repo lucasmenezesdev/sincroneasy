@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:sincroneasy/helpers/styles.dart';
 import 'package:sincroneasy/services/image_picker_controller.dart';
@@ -63,7 +61,7 @@ class _PerfilPageState extends State<PerfilPage> {
                               right: -10,
                               child: ClipOval(
                                 child: Container(
-                                  color: Color(0xFAFAFAFA),
+                                  color: white,
                                   child: IconButton(
                                     icon: const Icon(
                                       Icons.camera_alt_outlined,

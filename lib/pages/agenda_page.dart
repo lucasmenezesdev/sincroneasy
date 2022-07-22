@@ -34,11 +34,9 @@ class _AgendaPageState extends State<AgendaPage> {
       body: ListView.separated(
         itemBuilder: (BuildContext context, int service) {
           return ListTile(
-              leading: Container(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.network(services[service].providerImage),
-                ),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.network(services[service].providerImage),
               ),
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
